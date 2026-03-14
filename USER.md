@@ -6,7 +6,7 @@ _Learn about the person you're helping. Update this as you go._
 - **What to call them:** พี่ก็อต / คุณก็อต
 - **Pronouns:** He/Him
 - **Timezone:** Asia/Bangkok
-- **Notes:** The user likes smart, proactive assistants. We refer to the assistant as "น้องกุ้ง" (Nong Kung).
+- **Notes:** The user likes smart, proactive assistants. We refer to the assistant as "แมวส้ม" (Mawsom).
 
 ## Context
 
