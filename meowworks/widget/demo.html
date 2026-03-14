@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowChat - Chat Widget Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .demo-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .demo-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        .store-preview {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 500px;
+        }
+        
+        .store-banner {
+            background: linear-gradient(90deg, #4F46E5, #7C3AED);
+            height: 180px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .product-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #4F46E5;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .product-price {
+            color: #4F46E5;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .instruction {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 2px solid #0ea5e9;
+        }
+        
+        .instruction h3 {
+            font-size: 1.5rem;
+            color: #0369a1;
+            margin-bottom: 15px;
+        }
+        
+        .instruction p {
+            font-size: 1.1rem;
+            color: #075985;
+        }
+        
+        .instruction strong {
+            color: #0284c7;
+        }
+        
+        /* Chat Widget - Fixed */
+        #ai-chat-widget {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            left: auto !important;
+            top: auto !important;
+            z-index: 999999 !important;
+            font-family: 'Prompt', sans-serif !important;
+        }
+        
+        #chat-toggle {
+            width: 70px !important;
+            height: 70px !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+            color: white !important;
+            border: none !important;
+            cursor: pointer !important;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 28px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        #chat-toggle:hover {
+            transform: scale(1.1) !important;
+        }
+        
+        #chat-window {
+            position: absolute !important;
+            bottom: 80px !important;
+            right: 0 !important;
+            left: auto !important;
+            top: auto !important;
+            width: 380px !important;
+            height: 500px !important;
+            background: white !important;
+            border-radius: 20px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2) !important;
+            display: none !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+        }
+        
+        #chat-window.show {
+            display: flex !important;
+        }
+        
+        #chat-window.hidden {
+            display: none !important;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+            color: white !important;
+            padding: 20px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+        
+        .chat-header-info {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+        
+        .chat-avatar {
+            width: 45px !important;
+            height: 45px !important;
+            background: white !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 24px !important;
+        }
+        
+        .chat-title {
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+        }
+        
+        .chat-status {
+            font-size: 0.85rem !important;
+            opacity: 0.9 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+        }
+        
+        .chat-status::before {
+            content: '' !important;
+            width: 8px !important;
+            height: 8px !important;
+            background: #22c55e !important;
+            border-radius: 50% !important;
+        }
+        
+        .chat-close {
+            background: rgba(255,255,255,0.2) !important;
+            border: none !important;
+            color: white !important;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            cursor: pointer !important;
+            font-size: 18px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        .chat-messages {
+            flex: 1 !important;
+            padding: 20px !important;
+            overflow-y: auto !important;
+            background: #f9fafb !important;
+        }
+        
+        .message {
+            display: flex !important;
+            gap: 10px !important;
+            margin-bottom: 15px !important;
+        }
+        
+        .message-avatar {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 18px !important;
+            flex-shrink: 0 !important;
+        }
+        
+        .bot-message .message-avatar {
+            background: #4F46E5 !important;
+        }
+        
+        .user-message .message-avatar {
+            background: #10b981 !important;
+        }
+        
+        .message-content {
+            background: white !important;
+            padding: 12px 16px !important;
+            border-radius: 15px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+            max-width: 280px !important;
+            line-height: 1.5 !important;
+        }
+        
+        .bot-message .message-content {
+            border-bottom-left-radius: 3px !important;
+        }
+        
+        .user-message .message-content {
+            background: #4F46E5 !important;
+            color: white !important;
+            border-bottom-right-radius: 3px !important;
+        }
+        
+        .typing-indicator {
+            padding: 10px 20px !important;
+            color: #6b7280 !important;
+            font-size: 0.9rem !important;
+            display: none !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        
+        .typing-indicator.show {
+            display: flex !important;
+        }
+        
+        .chat-input {
+            padding: 15px !important;
+            background: white !important;
+            border-top: 1px solid #e5e7eb !important;
+            display: flex !important;
+            gap: 10px !important;
+        }
+        
+        .chat-input input {
+            flex: 1 !important;
+            padding: 12px 16px !important;
+            border: 2px solid #e5e7eb !important;
+            border-radius: 25px !important;
+            font-size: 1rem !important;
+            font-family: 'Prompt', sans-serif !important;
+            outline: none !important;
+            transition: border-color 0.3s !important;
+        }
+        
+        .chat-input input:focus {
+            border-color: #4F46E5 !important;
+        }
+        
+        .chat-input button {
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+            color: white !important;
+            border: none !important;
+            cursor: pointer !important;
+            font-size: 20px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: transform 0.3s !important;
+        }
+        
+        .chat-input button:hover {
+            transform: scale(1.1) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>🏪 ร้านค้าตัวอย่าง</h1>
+            <p>กดปุ่มแชทมุมขวาล่างเพื่อทดสอบ AI Agent</p>
+        </div>
+        
+        <div class="store-preview">
+            <div class="store-banner">
+                🛍️ MeowShop - ร้านขายเสื้อผ้าออนไลน์
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);"></div>
+                    <div class="product-name">เสื้อยืดสีดำ</div>
+                    <div class="product-price">฿350</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);"></div>
+                    <div class="product-name">กางเกงยีนส์</div>
+                    <div class="product-price">฿890</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);"></div>
+                    <div class="product-name">เสื้อโปโล</div>
+                    <div class="product-price">฿450</div>
+                </div>
+            </div>
+            
+            <div class="instruction">
+                <h3>💬 ทดสอบ AI Agent</h3>
+                <p>กดปุ่ม <strong>💬 แชทกับเรา</strong> มุมขวาล่าง</p>
+                <p style="margin-top: 10px;">ลองถามว่า <strong>"มีเสื้อสีน้ำเงินไซส์ L ไหม?"</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div id="ai-chat-widget">
+        <button id="chat-toggle" onclick="toggleChat()">
+            💬
+        </button>
+        
+        <div id="chat-window" class="hidden">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <span class="chat-avatar">🤖</span>
+                    <div>
+                        <div class="chat-title">MeowChat AI</div>
+                        <div class="chat-status">พร้อมช่วยเหลือ</div>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">✕</button>
+            </div>
+            
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <span class="message-avatar">🤖</span>
+                    <div class="message-content">
+                        สวัสดีค่ะ! 👋<br><br>
+                        ยินดีต้อนรับสู่ <strong>MeowShop</strong> ค่ะ<br><br>
+                        มีอะไรให้ช่วยไหมคะ? 😊
+                    </div>
+                </div>
+            </div>
+            
+            <div id="typing-indicator" class="typing-indicator">
+                <span>🤖 กำลังพิมพ์...</span>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="พิมข้อความ..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const win = document.getElementById('chat-window');
+            const btn = document.getElementById('chat-toggle');
+            
+            if (win.classList.contains('hidden')) {
+                win.classList.remove('hidden');
+                win.classList.add('show');
+                btn.style.display = 'none';
+            } else {
+                win.classList.remove('show');
+                win.classList.add('hidden');
+                btn.style.display = 'flex';
+            }
+        }
+        
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            addMessage(msg, 'user');
+            input.value = '';
+            showTyping();
+            
+            try {
+                const res = await fetch('http://localhost:3001/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+                hideTyping();
+                addMessage(data.message, 'bot');
+            } catch (e) {
+                hideTyping();
+                addMessage('ขอโทษค่ะ มีปัญหา ลองอีกครั้งนะคะ 💕', 'bot');
+            }
+        }
+        
+        function addMessage(text, sender) {
+            const box = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = 'message ' + sender + '-message';
+            div.innerHTML = '<span class="message-avatar">' + (sender === 'bot' ? '🤖' : '👤') + '</span><div class="message-content">' + text + '</div>';
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+        
+        function showTyping() {
+            document.getElementById('typing-indicator').classList.add('show');
+        }
+        
+        function hideTyping() {
+            document.getElementById('typing-indicator').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
