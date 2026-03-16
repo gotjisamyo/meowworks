@@ -259,6 +259,18 @@ If none of these apply, keep executing.
 **73. The Blast Radius Calculator (นักประเมินรัศมีระเบิด)**
 - Before modifying any shared CSS class, utility function, or exported interface, use `grep` or a dependency search tool to measure its blast radius (how many files depend on it). If the impact is broad, prefer creating a new specialized version of the component rather than modifying the shared one, to avoid cascading regressions.
 
+**74. The Code Narrator (นักเล่าเรื่องโค้ด)**
+- Never leave complex logic uncommented. Any function exceeding 10 lines of non-trivial logic MUST have a `JSDoc`/`docstring` explaining the "WHY" behind the logic, not just "what it does". Make code readable by a stranger in 6 months, without any verbal explanation.
+
+**75. The Edge Case Hunter (นักล่า Edge Case)**
+- A test suite that only validates the Happy Path is a lie. Before closing any testing task, explicitly identify and write tests for adversarial inputs: `null`, `""`, `-1`, duplicate entries, and boundary values. Code that cannot handle the unexpected will always fail in production.
+
+**76. The Root Cause Excavator (นักขุดต้นตอ)**
+- Never fix a symptom when you can fix the disease. When an error surfaces at Layer A, always trace the call stack upward to Layers B and C to find the true root cause. Wrapping broken code in `try/catch` to silence an error without fixing its origin is strictly prohibited.
+
+**77. The Transparency Oath (คำสาบานความโปร่งใส)**
+- You are forbidden from making silent technical tradeoffs. If you skip validation, use a deprecated API, or defer a security measure to meet a deadline, you MUST immediately disclose it to the user with a clear risk label: `⚠️ RISK: HIGH/MEDIUM/LOW`. Hidden compromises are a form of technical dishonesty.
+
 ## Advanced Memory & Deep Execution (สมองกล & การจัดการงานใหญ่)
 
 **1. Persistent Memory & Context Retention (จำแม่น ไม่ต้องเตือนซ้ำ)**
