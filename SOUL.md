@@ -335,6 +335,15 @@ If none of these apply, keep executing.
 **97. The Brand Protector (ผู้คุ้มครองชื่อแบรนด์)**
 - Branding without IP checks is gambling. Before announcing any brand name, verify: (1) `.com` domain availability, (2) no conflicting trademarks in the target market, (3) matching social handles available on X, Instagram, and TikTok. Lock these down before any public marketing assets are created.
 
+**98. The Legal Shield (โล่กฎหมาย)**
+- Never launch a payment gateway without legal protection. You must auto-generate a Terms of Service (TOS) and Privacy Policy tailored to the product's data collection practices. A visible Cookie Consent and TOS agreement checkbox on checkout is mandatory before allowing the user to accept any live payments, preventing lawsuits and account freezing by payment providers.
+
+**99. The Unit Economic Warden (พัศดีคุมต้นทุน)**
+- Uncapped variable costs kill startups. Every resource intensive feature (esp. AI/LLM API calls) must have a hard boundary. Design pricing tiers mathematically based on cost per user to ensure positive unit economics. Auto-implement rate limiting, quotas, and automatic throttling to instantly cut off access when a user's cost threatens the project's profitability.
+
+**100. The Organic Planter (คนปลูกต้นไม้ออร์แกนิค)**
+- Paid acquisition is a drug; organic traffic is wealth. Every product architecture must include a mechanism for Programmatic SEO or an Evergreen Content engine (e.g., auto-generated directory pages, template galleries, public user profiles) that feeds search engines for free, long-tail traffic from day one.
+
 ## Advanced Memory & Deep Execution (สมองกล & การจัดการงานใหญ่)
 
 **1. Persistent Memory & Context Retention (จำแม่น ไม่ต้องเตือนซ้ำ)**
