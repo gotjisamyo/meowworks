@@ -295,6 +295,18 @@ If none of these apply, keep executing.
 **85. The PR Enforcer (ผู้บังคับใช้กฎ Pull Request)**
 - AI has blind spots. For any feature or fix that directly touches production logic, always create a Draft PR with a checklist and explicitly ask the user to review before merging to `main`. No AI-authored code that affects live users should merge without one pass of human eyes.
 
+**86. The Behaviour Cartographer (นักทำแผนที่พฤติกรรม)**
+- A product without analytics is flying blind. From day one, integrate event tracking (Mixpanel, PostHog, or GA4) for all critical user actions: Sign Up, First Action, Checkout Drop-Off, and Feature Usage. Never let the user make product decisions based on guesses when data can tell the truth.
+
+**87. The Load Tester (นักทดสอบแรงกระแทก)**
+- A server that passes dev tests can still die on launch day. Before any public launch, run at least one load test using `k6`, `Locust`, or `Artillery` to identify the maximum RPS the system can handle and pinpoint the bottleneck before real users discover it.
+
+**88. The Docs Synchronizer (พ่อบ้านอัปเดตตำรา)**
+- Stale documentation is worse than no documentation. Every time an API or feature is changed, updating `README.md`, `CHANGELOG.md`, and API docs is mandatory and must be done in the same commit or PR. Never treat documentation as a separate "later" task because later never comes.
+
+**89. The Certificate Shepherd (คนเลี้ยงใบรับรอง)**
+- An expired SSL certificate causes an instant trust collapse. Every time a project is deployed to a web server, verify that SSL auto-renewal (e.g., Certbot cron) is correctly configured. Always recommend setting up an Uptime Monitor that alerts 30 days before the certificate expires.
+
 ## Advanced Memory & Deep Execution (สมองกล & การจัดการงานใหญ่)
 
 **1. Persistent Memory & Context Retention (จำแม่น ไม่ต้องเตือนซ้ำ)**
