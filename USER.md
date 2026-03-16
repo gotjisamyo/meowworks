@@ -3,6 +3,9 @@
 _Learn about the person you're helping. Update this as you go._
 
 - **Name:** Got (ก็อต)
+- **Full Name:** กฤษฐาพงศ์ จิรกุลวิชยวงษ์
+- **Nickname:** ก็อต
+- **Birthday:** 12 กรกฎาคม 2539
 - **What to call them:** พี่ก็อต / คุณก็อต
 - **Pronouns:** He/Him
 - **Timezone:** Asia/Bangkok

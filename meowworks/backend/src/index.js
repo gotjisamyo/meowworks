@@ -54,6 +54,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/shops', shopRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/marketing', require('./routes/marketing'));
+app.use('/api/inventory', require('./routes/inventory'));
+app.use('/api/crm', require('./routes/crm'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/team', require('./routes/team'));
+app.use('/api/projects', require('./routes/projects'));
 
 // Chat API - Direct
 const { processUserMessage } = require('./agent');

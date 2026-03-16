@@ -84,7 +84,7 @@ export default function Shops() {
     router.push('/login');
   };
 
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const [user, setUser] = useState({});
 
   if (loading) {
     return (

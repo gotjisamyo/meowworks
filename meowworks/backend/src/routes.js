@@ -11,49 +11,6 @@ function setupRoutes(app) {
     }
   });
 
-  // Get all orders
-  app.get('/api/orders', (req, res) => {
-    try {
-      const { status, lineId, limit } = req.query;
-      const orders = getOrders({ status, lineId, limit: limit ? parseInt(limit) : 100 });
-      res.json({ success: true, data: orders });
-    } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
-    }
-  });
-
-  // Get single order
-  app.get('/api/orders/:id', (req, res) => {
-    try {
-      const orders = getOrders({ limit: 1 });
-      const order = orders.find(o => o.id === parseInt(req.params.id));
-      
-      if (!order) {
-        return res.status(404).json({ success: false, error: 'Order not found' });
-      }
-      
-      res.json({ success: true, data: order });
-    } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
-    }
-  });
-
-  // Update order status
-  app.patch('/api/orders/:id/status', (req, res) => {
-    try {
-      const { status } = req.body;
-      
-      if (!status) {
-        return res.status(400).json({ success: false, error: 'Status is required' });
-      }
-      
-      const result = updateOrderStatus(req.params.id, status);
-      res.json({ success: true, data: result });
-    } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
-    }
-  });
-
   // Get products
   app.get('/api/products', (req, res) => {
     try {
