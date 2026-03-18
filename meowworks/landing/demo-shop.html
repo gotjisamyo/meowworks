@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeowChat Demo - ร้านแมวส้ม</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-pink-500 to-teal-500 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl">🐱</span>
+        <div>
+          <h1 class="text-xl font-bold">MeowChat Demo</h1>
+          <p class="text-xs opacity-80">ร้านแมวส้ม</p>
+        </div>
+      </div>
+      <button onclick="toggleCart()" class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold">
+        🛒 ตะกร้า <span id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Products -->
+  <section class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-6">สินค้าแนะนำ</h2>
+    <div class="grid grid-cols-3 gap-6" id="products-grid">
+      <!-- Products will be loaded here -->
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl p-6 max-w-md w-full">
+      <h3 class="text-xl font-bold mb-4">🛒 ตะกร้า</h3>
+      <div id="cart-items" class="space-y-3 max-h-60 overflow-y-auto">
+        <p class="text-gray-500 text-center py-4">ยังไม่มีสินค้าในตะกร้า</p>
+      </div>
+      <div class="border-t mt-4 pt-4">
+        <div class="flex justify-between font-bold text-lg">
+          <span>รวม:</span>
+          <span id="cart-total">฿0</span>
+        </div>
+        <button onclick="checkout()" class="bg-pink-500 text-white w-full py-3 rounded-lg font-semibold mt-4 hover:bg-pink-600">
+          สั่งซื้อ
+        </button>
+        <button onclick="toggleCart()" class="text-gray-500 w-full py-2 mt-2">
+          ปิด
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Widget -->
+  <script src="widget.js"></script>
+  <div id="meowchat-widget" data-shop-id="shop_demo_123"></div>
+
+  <script>
+    // Sample products
+    const products = [
+      { id: 1, name: 'เสื้อยืด MeowChat', price: 299, image: '👕', category: 'เสื้อ' },
+      { id: 2, name: 'กระเป๋า MeowChat', price: 599, image: '👜', category: 'กระเป๋า' },
+      { id: 3, name: 'หมวก MeowChat', price: 399, image: '🧢', category: 'หมวก' },
+      { id: 4, name: 'แว่นตา MeowChat', price: 499, image: '🕶️', category: 'แว่น' },
+      { id: 5, name: 'กระเป๋าสตางค์', price: 199, image: '👛', category: 'เครื่องประดับ' },
+      { id: 6, name: 'ถุงผ้า MeowChat', price: 99, image: '🛍️', category: 'ถุง' }
+    ];
+
+    let cart = [];
+
+    // Render products
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = products.map(p => `
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+          <div class="h-40 bg-gray-100 flex items-center justify-center text-6xl">
+            ${p.image}
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-lg">${p.name}</h3>
+            <p class="text-gray-500 text-sm">${p.category}</p>
+            <div class="flex justify-between items-center mt-3">
+              <span class="text-pink-500 font-bold text-xl">฿${p.price}</span>
+              <button onclick="addToCart(${p.id})" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
+                ใส่ตะกร้า
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      updateCart();
+      alert('เพิ่มในตะกร้าแล้ว! 🛒');
+    }
+
+    function updateCart() {
+      document.getElementById('cart-count').innerText = cart.length;
+      const total = cart.reduce((sum, p) => sum + p.price, 0);
+      document.getElementById('cart-total').innerText = '฿' + total;
+      
+      if (cart.length === 0) {
+        document.getElementById('cart-items').innerHTML = '<p class="text-gray-500 text-center py-4">ยังไม่มีสินค้าในตะกร้า</p>';
+      } else {
+        document.getElementById('cart-items').innerHTML = cart.map((p, i) => `
+          <div class="flex justify-between items-center border-b pb-2">
+            <div>
+              <span class="font-semibold">${p.image} ${p.name}</span>
+              <p class="text-gray-500 text-sm">฿${p.price}</p>
+            </div>
+            <button onclick="removeFromCart(${i})" class="text-red-500">ลบ</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('กรุณาเลือกสินค้าก่อนค่ะ!');
+        return;
+      }
+      const total = cart.reduce((sum, p) => sum + p.price, 0);
+      alert('สั่งซื้อสำเร็จ! รวม ' + total + ' บาท\n\nขอบคุณที่สั่งซื้อค่ะ! 🐱');
+      cart = [];
+      updateCart();
+      toggleCart();
+    }
+
+    // Initialize
+    renderProducts();
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeowChat Widget</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-pink-500 mb-8">🔌 MeowChat Web Widget</h1>
+    
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <h2 class="text-xl font-bold mb-4">📋 Widget Code</h2>
+      <p class="text-gray-600 mb-4">วางโค้ดนี้ในเว็บไซต์ของคุณ:</p>
+      <pre class="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;script src="https://your-domain.com/widget.js"&gt;&lt;/script&gt;
+&lt;div id="meowchat-widget"&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <h2 class="text-xl font-bold mb-4">🎨 ตัวอย่าง Widget</h2>
+      <p class="text-gray-600 mb-4">ลองคลิกดูตัวอย่าง:</p>
+      
+      <!-- Demo Widget -->
+      <div class="border rounded-xl overflow-hidden" style="max-width: 400px;">
+        <div class="bg-gradient-to-r from-pink-500 to-teal-500 text-white p-4 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🐱</span>
+            <div>
+              <div class="font-bold">MeowChat</div>
+              <div class="text-xs opacity-80">Online</div>
+            </div>
+          </div>
+          <button class="bg-white text-pink-500 px-3 py-1 rounded-full text-sm font-semibold">
+            ตอบกลับ
+          </button>
+        </div>
+        <div class="bg-gray-50 p-4 h-64 overflow-y-auto">
+          <div class="flex gap-2 mb-4">
+            <span class="text-2xl">🐱</span>
+            <div class="bg-white rounded-lg p-3 shadow-sm">
+              <p class="text-sm">สวัสดีค่ะ! ยินดีต้อนรับสู่ MeowChat 🐱</p>
+              <p class="text-xs text-gray-500 mt-1">10:30</p>
+            </div>
+          </div>
+          <div class="flex gap-2 mb-4 flex-row-reverse">
+            <span class="text-2xl">👤</span>
+            <div class="bg-pink-500 text-white rounded-lg p-3 shadow-sm">
+              <p class="text-sm">สวัสดีคะ มีอะไรให้ช่วยไหมคะ?</p>
+              <p class="text-xs opacity-70 mt-1">10:31</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-3 border-t">
+          <input type="text" placeholder="พิมพ์ข้อความ..." class="w-full border rounded-full px-4 py-2 text-sm">
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6">
+      <h2 class="text-xl font-bold mb-4">⚙️ การตั้งค่า</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1">Shop ID</label>
+          <input type="text" value="shop_123" class="w-full border rounded-lg px-4 py-2" readonly>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">สีหลัก</label>
+          <input type="color" value="#EC4899" class="w-full h-10 rounded">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">ตำแหน่ง</label>
+          <select class="w-full border rounded-lg px-4 py-2">
+            <option>ขวาล่าง (Default)</option>
+            <option>ซ้ายล่าง</option>
+            <option>ขวาบน</option>
+            <option>ซ้ายบน</option>
+          </select>
+        </div>
+        <button class="bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold w-full">
+          บันทึกการตั้งค่า
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

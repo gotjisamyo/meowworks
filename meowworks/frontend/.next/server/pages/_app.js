@@ -1,0 +1,156 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "pages/_app";
+exports.ids = ["pages/_app"];
+exports.modules = {
+
+/***/ "./lib/authContext.js":
+/*!****************************!*\
+  !*** ./lib/authContext.js ***!
+  \****************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   AuthProvider: () => (/* binding */ AuthProvider),\n/* harmony export */   useAuth: () => (/* binding */ useAuth)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ \"./node_modules/next/router.js\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ \"axios\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_3__]);\naxios__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\n\n\n\nconst AuthContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)(null);\nconst API_URL = process.env.NEXT_PUBLIC_API_URL || \"http://localhost:3001\";\nfunction AuthProvider({ children }) {\n    const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);\n    const [selectedShop, setSelectedShop] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [shops, setShops] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        checkAuth();\n    }, []);\n    const checkAuth = async ()=>{\n        const token = localStorage.getItem(\"token\");\n        if (!token) {\n            setLoading(false);\n            return;\n        }\n        try {\n            axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].defaults.headers.common[\"Authorization\"] = `Bearer ${token}`;\n            const response = await axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].get(`${API_URL}/api/auth/me`);\n            setUser(response.data.user);\n            // Load shops if user has shops\n            if (response.data.shops) {\n                setShops(response.data.shops);\n                const savedShopId = localStorage.getItem(\"selectedShopId\");\n                if (savedShopId) {\n                    const shop = response.data.shops.find((s)=>s.id === savedShopId);\n                    if (shop) setSelectedShop(shop);\n                } else if (response.data.shops.length > 0) {\n                    setSelectedShop(response.data.shops[0]);\n                }\n            }\n        } catch (error) {\n            console.error(\"Auth check failed:\", error);\n            localStorage.removeItem(\"token\");\n            delete axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].defaults.headers.common[\"Authorization\"];\n        } finally{\n            setLoading(false);\n        }\n    };\n    const login = async (email, password)=>{\n        try {\n            const response = await axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].post(`${API_URL}/api/auth/login`, {\n                email,\n                password\n            });\n            const { token, user, shops } = response.data;\n            localStorage.setItem(\"token\", token);\n            axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].defaults.headers.common[\"Authorization\"] = `Bearer ${token}`;\n            setUser(user);\n            setShops(shops || []);\n            if (shops && shops.length > 0) {\n                setSelectedShop(shops[0]);\n                localStorage.setItem(\"selectedShopId\", shops[0].id);\n            }\n            return {\n                success: true\n            };\n        } catch (error) {\n            const message = error.response?.data?.message || \"Login failed\";\n            return {\n                success: false,\n                error: message\n            };\n        }\n    };\n    const register = async (name, email, password, shopName)=>{\n        try {\n            const response = await axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].post(`${API_URL}/api/auth/register`, {\n                name,\n                email,\n                password,\n                shopName\n            });\n            const { token, user, shop } = response.data;\n            localStorage.setItem(\"token\", token);\n            axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].defaults.headers.common[\"Authorization\"] = `Bearer ${token}`;\n            setUser(user);\n            setShops(shop ? [\n                shop\n            ] : []);\n            if (shop) {\n                setSelectedShop(shop);\n                localStorage.setItem(\"selectedShopId\", shop.id);\n            }\n            return {\n                success: true\n            };\n        } catch (error) {\n            const message = error.response?.data?.message || \"Registration failed\";\n            return {\n                success: false,\n                error: message\n            };\n        }\n    };\n    const logout = ()=>{\n        localStorage.removeItem(\"token\");\n        localStorage.removeItem(\"selectedShopId\");\n        delete axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].defaults.headers.common[\"Authorization\"];\n        setUser(null);\n        setShops([]);\n        setSelectedShop(null);\n        router.push(\"/login\");\n    };\n    const selectShop = (shop)=>{\n        setSelectedShop(shop);\n        localStorage.setItem(\"selectedShopId\", shop.id);\n    };\n    const createShop = async (shopData)=>{\n        try {\n            const token = localStorage.getItem(\"token\");\n            const response = await axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].post(`${API_URL}/api/shops`, shopData, {\n                headers: {\n                    Authorization: `Bearer ${token}`\n                }\n            });\n            const newShop = response.data.shop;\n            setShops((prev)=>[\n                    ...prev,\n                    newShop\n                ]);\n            setSelectedShop(newShop);\n            localStorage.setItem(\"selectedShopId\", newShop.id);\n            return {\n                success: true,\n                shop: newShop\n            };\n        } catch (error) {\n            const message = error.response?.data?.message || \"Failed to create shop\";\n            return {\n                success: false,\n                error: message\n            };\n        }\n    };\n    const fetchShops = async ()=>{\n        try {\n            const token = localStorage.getItem(\"token\");\n            const response = await axios__WEBPACK_IMPORTED_MODULE_3__[\"default\"].get(`${API_URL}/api/shops`, {\n                headers: {\n                    Authorization: `Bearer ${token}`\n                }\n            });\n            setShops(response.data.shops);\n            return {\n                success: true,\n                shops: response.data.shops\n            };\n        } catch (error) {\n            return {\n                success: false,\n                error: error.message\n            };\n        }\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(AuthContext.Provider, {\n        value: {\n            user,\n            loading,\n            login,\n            register,\n            logout,\n            isAuthenticated: !!user,\n            shops,\n            selectedShop,\n            selectShop,\n            createShop,\n            fetchShops\n        },\n        children: children\n    }, void 0, false, {\n        fileName: \"/home/got/.openclaw/workspace/meowworks/frontend/lib/authContext.js\",\n        lineNumber: 153,\n        columnNumber: 5\n    }, this);\n}\nfunction useAuth() {\n    const context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(AuthContext);\n    if (!context) {\n        throw new Error(\"useAuth must be used within an AuthProvider\");\n    }\n    return context;\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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QztRQUNyRCxFQUFFLE9BQU9tQixPQUFPO1lBQ2QsT0FBTztnQkFBRVEsU0FBUztnQkFBT1IsT0FBT0EsTUFBTVMsT0FBTztZQUFDO1FBQ2hEO0lBQ0Y7SUFFQSxxQkFDRSw4REFBQ3pDLFlBQVlzRCxRQUFRO1FBQ25CQyxPQUFPO1lBQ0xoRDtZQUNBRTtZQUNBMEI7WUFDQU87WUFDQUc7WUFDQVcsaUJBQWlCLENBQUMsQ0FBQ2pEO1lBQ25CTTtZQUNBRjtZQUNBb0M7WUFDQUM7WUFDQUs7UUFDRjtrQkFFQy9DOzs7Ozs7QUFHUDtBQUVPLFNBQVNtRDtJQUNkLE1BQU1DLFVBQVUvRCxpREFBVUEsQ0FBQ0s7SUFDM0IsSUFBSSxDQUFDMEQsU0FBUztRQUNaLE1BQU0sSUFBSUMsTUFBTTtJQUNsQjtJQUNBLE9BQU9EO0FBQ1QiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9haS1hZ2VudC1tYW5hZ2VyLWZyb250ZW5kLy4vbGliL2F1dGhDb250ZXh0LmpzPzMxZTMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlQ29udGV4dCwgdXNlQ29udGV4dCwgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IHVzZVJvdXRlciB9IGZyb20gJ25leHQvcm91dGVyJztcbmltcG9ydCBheGlvcyBmcm9tICdheGlvcyc7XG5cbmNvbnN0IEF1dGhDb250ZXh0ID0gY3JlYXRlQ29udGV4dChudWxsKTtcblxuY29uc3QgQVBJX1VSTCA9IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0FQSV9VUkwgfHwgJ2h0dHA6Ly9sb2NhbGhvc3Q6MzAwMSc7XG5cbmV4cG9ydCBmdW5jdGlvbiBBdXRoUHJvdmlkZXIoeyBjaGlsZHJlbiB9KSB7XG4gIGNvbnN0IFt1c2VyLCBzZXRVc2VyXSA9IHVzZVN0YXRlKG51bGwpO1xuICBjb25zdCBbbG9hZGluZywgc2V0TG9hZGluZ10gPSB1c2VTdGF0ZSh0cnVlKTtcbiAgY29uc3QgW3NlbGVjdGVkU2hvcCwgc2V0U2VsZWN0ZWRTaG9wXSA9IHVzZVN0YXRlKG51bGwpO1xuICBjb25zdCBbc2hvcHMsIHNldFNob3BzXSA9IHVzZVN0YXRlKFtdKTtcbiAgY29uc3Qgcm91dGVyID0gdXNlUm91dGVyKCk7XG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBjaGVja0F1dGgoKTtcbiAgfSwgW10pO1xuXG4gIGNvbnN0IGNoZWNrQXV0aCA9IGFzeW5jICgpID0+IHtcbiAgICBjb25zdCB0b2tlbiA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCd0b2tlbicpO1xuICAgIGlmICghdG9rZW4pIHtcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpO1xuICAgICAgcmV0dXJuO1xuICAgIH1cblxuICAgIHRyeSB7XG4gICAgICBheGlvcy5kZWZhdWx0cy5oZWFkZXJzLmNvbW1vblsnQXV0aG9yaXphdGlvbiddID0gYEJlYXJlciAke3Rva2VufWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGF4aW9zLmdldChgJHtBUElfVVJMfS9hcGkvYXV0aC9tZWApO1xuICAgICAgc2V0VXNlcihyZXNwb25zZS5kYXRhLnVzZXIpO1xuICAgICAgXG4gICAgICAvLyBMb2FkIHNob3BzIGlmIHVzZXIgaGFzIHNob3BzXG4gICAgICBpZiAocmVzcG9uc2UuZGF0YS5zaG9wcykge1xuICAgICAgICBzZXRTaG9wcyhyZXNwb25zZS5kYXRhLnNob3BzKTtcbiAgICAgICAgY29uc3Qgc2F2ZWRTaG9wSWQgPSBsb2NhbFN0b3JhZ2UuZ2V0SXRlbSgnc2VsZWN0ZWRTaG9wSWQnKTtcbiAgICAgICAgaWYgKHNhdmVkU2hvcElkKSB7XG4gICAgICAgICAgY29uc3Qgc2hvcCA9IHJlc3BvbnNlLmRhdGEuc2hvcHMuZmluZChzID0+IHMuaWQgPT09IHNhdmVkU2hvcElkKTtcbiAgICAgICAgICBpZiAoc2hvcCkgc2V0U2VsZWN0ZWRTaG9wKHNob3ApO1xuICAgICAgICB9IGVsc2UgaWYgKHJlc3BvbnNlLmRhdGEuc2hvcHMubGVuZ3RoID4gMCkge1xuICAgICAgICAgIHNldFNlbGVjdGVkU2hvcChyZXNwb25zZS5kYXRhLnNob3BzWzBdKTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICBjb25zb2xlLmVycm9yKCdBdXRoIGNoZWNrIGZhaWxlZDonLCBlcnJvcik7XG4gICAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbSgndG9rZW4nKTtcbiAgICAgIGRlbGV0ZSBheGlvcy5kZWZhdWx0cy5oZWFkZXJzLmNvbW1vblsnQXV0aG9yaXphdGlvbiddO1xuICAgIH0gZmluYWxseSB7XG4gICAgICBzZXRMb2FkaW5nKGZhbHNlKTtcbiAgICB9XG4gIH07XG5cbiAgY29uc3QgbG9naW4gPSBhc3luYyAoZW1haWwsIHBhc3N3b3JkKSA9PiB7XG4gICAgdHJ5IHtcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgYXhpb3MucG9zdChgJHtBUElfVVJMfS9hcGkvYXV0aC9sb2dpbmAsIHtcbiAgICAgICAgZW1haWwsXG4gICAgICAgIHBhc3N3b3JkLFxuICAgICAgfSk7XG5cbiAgICAgIGNvbnN0IHsgdG9rZW4sIHVzZXIsIHNob3BzIH0gPSByZXNwb25zZS5kYXRhO1xuICAgICAgbG9jYWxTdG9yYWdlLnNldEl0ZW0oJ3Rva2VuJywgdG9rZW4pO1xuICAgICAgYXhpb3MuZGVmYXVsdHMuaGVhZGVycy5jb21tb25bJ0F1dGhvcml6YXRpb24nXSA9IGBCZWFyZXIgJHt0b2tlbn1gO1xuICAgICAgXG4gICAgICBzZXRVc2VyKHVzZXIpO1xuICAgICAgc2V0U2hvcHMoc2hvcHMgfHwgW10pO1xuICAgICAgXG4gICAgICBpZiAoc2hvcHMgJiYgc2hvcHMubGVuZ3RoID4gMCkge1xuICAgICAgICBzZXRTZWxlY3RlZFNob3Aoc2hvcHNbMF0pO1xuICAgICAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnc2VsZWN0ZWRTaG9wSWQnLCBzaG9wc1swXS5pZCk7XG4gICAgICB9XG5cbiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IHRydWUgfTtcbiAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgY29uc3QgbWVzc2FnZSA9IGVycm9yLnJlc3BvbnNlPy5kYXRhPy5tZXNzYWdlIHx8ICdMb2dpbiBmYWlsZWQnO1xuICAgICAgcmV0dXJuIHsgc3VjY2VzczogZmFsc2UsIGVycm9yOiBtZXNzYWdlIH07XG4gICAgfVxuICB9O1xuXG4gIGNvbnN0IHJlZ2lzdGVyID0gYXN5bmMgKG5hbWUsIGVtYWlsLCBwYXNzd29yZCwgc2hvcE5hbWUpID0+IHtcbiAgICB0cnkge1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBheGlvcy5wb3N0KGAke0FQSV9VUkx9L2FwaS9hdXRoL3JlZ2lzdGVyYCwge1xuICAgICAgICBuYW1lLFxuICAgICAgICBlbWFpbCxcbiAgICAgICAgcGFzc3dvcmQsXG4gICAgICAgIHNob3BOYW1lLFxuICAgICAgfSk7XG5cbiAgICAgIGNvbnN0IHsgdG9rZW4sIHVzZXIsIHNob3AgfSA9IHJlc3BvbnNlLmRhdGE7XG4gICAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgndG9rZW4nLCB0b2tlbik7XG4gICAgICBheGlvcy5kZWZhdWx0cy5oZWFkZXJzLmNvbW1vblsnQXV0aG9yaXphdGlvbiddID0gYEJlYXJlciAke3Rva2VufWA7XG4gICAgICBcbiAgICAgIHNldFVzZXIodXNlcik7XG4gICAgICBzZXRTaG9wcyhzaG9wID8gW3Nob3BdIDogW10pO1xuICAgICAgaWYgKHNob3ApIHtcbiAgICAgICAgc2V0U2VsZWN0ZWRTaG9wKHNob3ApO1xuICAgICAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnc2VsZWN0ZWRTaG9wSWQnLCBzaG9wLmlkKTtcbiAgICAgIH1cblxuICAgICAgcmV0dXJuIHsgc3VjY2VzczogdHJ1ZSB9O1xuICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICBjb25zdCBtZXNzYWdlID0gZXJyb3IucmVzcG9uc2U/LmRhdGE/Lm1lc3NhZ2UgfHwgJ1JlZ2lzdHJhdGlvbiBmYWlsZWQnO1xuICAgICAgcmV0dXJuIHsgc3VjY2VzczogZmFsc2UsIGVycm9yOiBtZXNzYWdlIH07XG4gICAgfVxuICB9O1xuXG4gIGNvbnN0IGxvZ291dCA9ICgpID0+IHtcbiAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbSgndG9rZW4nKTtcbiAgICBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbSgnc2VsZWN0ZWRTaG9wSWQnKTtcbiAgICBkZWxldGUgYXhpb3MuZGVmYXVsdHMuaGVhZGVycy5jb21tb25bJ0F1dGhvcml6YXRpb24nXTtcbiAgICBzZXRVc2VyKG51bGwpO1xuICAgIHNldFNob3BzKFtdKTtcbiAgICBzZXRTZWxlY3RlZFNob3AobnVsbCk7XG4gICAgcm91dGVyLnB1c2goJy9sb2dpbicpO1xuICB9O1xuXG4gIGNvbnN0IHNlbGVjdFNob3AgPSAoc2hvcCkgPT4ge1xuICAgIHNldFNlbGVjdGVkU2hvcChzaG9wKTtcbiAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnc2VsZWN0ZWRTaG9wSWQnLCBzaG9wLmlkKTtcbiAgfTtcblxuICBjb25zdCBjcmVhdGVTaG9wID0gYXN5bmMgKHNob3BEYXRhKSA9PiB7XG4gICAgdHJ5IHtcbiAgICAgIGNvbnN0IHRva2VuID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3Rva2VuJyk7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGF4aW9zLnBvc3QoYCR7QVBJX1VSTH0vYXBpL3Nob3BzYCwgc2hvcERhdGEsIHtcbiAgICAgICAgaGVhZGVyczogeyBBdXRob3JpemF0aW9uOiBgQmVhcmVyICR7dG9rZW59YCB9LFxuICAgICAgfSk7XG4gICAgICBcbiAgICAgIGNvbnN0IG5ld1Nob3AgPSByZXNwb25zZS5kYXRhLnNob3A7XG4gICAgICBzZXRTaG9wcyhwcmV2ID0+IFsuLi5wcmV2LCBuZXdTaG9wXSk7XG4gICAgICBzZXRTZWxlY3RlZFNob3AobmV3U2hvcCk7XG4gICAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnc2VsZWN0ZWRTaG9wSWQnLCBuZXdTaG9wLmlkKTtcbiAgICAgIFxuICAgICAgcmV0dXJuIHsgc3VjY2VzczogdHJ1ZSwgc2hvcDogbmV3U2hvcCB9O1xuICAgIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgICBjb25zdCBtZXNzYWdlID0gZXJyb3IucmVzcG9uc2U/LmRhdGE/Lm1lc3NhZ2UgfHwgJ0ZhaWxlZCB0byBjcmVhdGUgc2hvcCc7XG4gICAgICByZXR1cm4geyBzdWNjZXNzOiBmYWxzZSwgZXJyb3I6IG1lc3NhZ2UgfTtcbiAgICB9XG4gIH07XG5cbiAgY29uc3QgZmV0Y2hTaG9wcyA9IGFzeW5jICgpID0+IHtcbiAgICB0cnkge1xuICAgICAgY29uc3QgdG9rZW4gPSBsb2NhbFN0b3JhZ2UuZ2V0SXRlbSgndG9rZW4nKTtcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgYXhpb3MuZ2V0KGAke0FQSV9VUkx9L2FwaS9zaG9wc2AsIHtcbiAgICAgICAgaGVhZGVyczogeyBBdXRob3JpemF0aW9uOiBgQmVhcmVyICR7dG9rZW59YCB9LFxuICAgICAgfSk7XG4gICAgICBzZXRTaG9wcyhyZXNwb25zZS5kYXRhLnNob3BzKTtcbiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IHRydWUsIHNob3BzOiByZXNwb25zZS5kYXRhLnNob3BzIH07XG4gICAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICAgIHJldHVybiB7IHN1Y2Nlc3M6IGZhbHNlLCBlcnJvcjogZXJyb3IubWVzc2FnZSB9O1xuICAgIH1cbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxBdXRoQ29udGV4dC5Qcm92aWRlclxuICAgICAgdmFsdWU9e3tcbiAgICAgICAgdXNlcixcbiAgICAgICAgbG9hZGluZyxcbiAgICAgICAgbG9naW4sXG4gICAgICAgIHJlZ2lzdGVyLFxuICAgICAgICBsb2dvdXQsXG4gICAgICAgIGlzQXV0aGVudGljYXRlZDogISF1c2VyLFxuICAgICAgICBzaG9wcyxcbiAgICAgICAgc2VsZWN0ZWRTaG9wLFxuICAgICAgICBzZWxlY3RTaG9wLFxuICAgICAgICBjcmVhdGVTaG9wLFxuICAgICAgICBmZXRjaFNob3BzLFxuICAgICAgfX1cbiAgICA+XG4gICAgICB7Y2hpbGRyZW59XG4gICAgPC9BdXRoQ29udGV4dC5Qcm92aWRlcj5cbiAgKTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIHVzZUF1dGgoKSB7XG4gIGNvbnN0IGNvbnRleHQgPSB1c2VDb250ZXh0KEF1dGhDb250ZXh0KTtcbiAgaWYgKCFjb250ZXh0KSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKCd1c2VBdXRoIG11c3QgYmUgdXNlZCB3aXRoaW4gYW4gQXV0aFByb3ZpZGVyJyk7XG4gIH1cbiAgcmV0dXJuIGNvbnRleHQ7XG59XG4iXSwibmFtZXMiOlsiY3JlYXRlQ29udGV4dCIsInVzZUNvbnRleHQiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsInVzZVJvdXRlciIsImF4aW9zIiwiQXV0aENvbnRleHQiLCJBUElfVVJMIiwicHJvY2VzcyIsImVudiIsIk5FWFRfUFVCTElDX0FQSV9VUkwiLCJBdXRoUHJvdmlkZXIiLCJjaGlsZHJlbiIsInVzZXIiLCJzZXRVc2VyIiwibG9hZGluZyIsInNldExvYWRpbmciLCJzZWxlY3RlZFNob3AiLCJzZXRTZWxlY3RlZFNob3AiLCJzaG9wcyIsInNldFNob3BzIiwicm91dGVyIiwiY2hlY2tBdXRoIiwidG9rZW4iLCJsb2NhbFN0b3JhZ2UiLCJnZXRJdGVtIiwiZGVmYXVsdHMiLCJoZWFkZXJzIiwiY29tbW9uIiwicmVzcG9uc2UiLCJnZXQiLCJkYXRhIiwic2F2ZWRTaG9wSWQiLCJzaG9wIiwiZmluZCIsInMiLCJpZCIsImxlbmd0aCIsImVycm9yIiwiY29uc29sZSIsInJlbW92ZUl0ZW0iLCJsb2dpbiIsImVtYWlsIiwicGFzc3dvcmQiLCJwb3N0Iiwic2V0SXRlbSIsInN1Y2Nlc3MiLCJtZXNzYWdlIiwicmVnaXN0ZXIiLCJuYW1lIiwic2hvcE5hbWUiLCJsb2dvdXQiLCJwdXNoIiwic2VsZWN0U2hvcCIsImNyZWF0ZVNob3AiLCJzaG9wRGF0YSIsIkF1dGhvcml6YXRpb24iLCJuZXdTaG9wIiwicHJldiIsImZldGNoU2hvcHMiLCJQcm92aWRlciIsInZhbHVlIiwiaXNBdXRoZW50aWNhdGVkIiwidXNlQXV0aCIsImNvbnRleHQiLCJFcnJvciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./lib/authContext.js\n");
+
+/***/ }),
+
+/***/ "./pages/_app.js":
+/*!***********************!*\
+  !*** ./pages/_app.js ***!
+  \***********************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ App)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/globals.css */ \"./styles/globals.css\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_globals_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_authContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/authContext */ \"./lib/authContext.js\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_lib_authContext__WEBPACK_IMPORTED_MODULE_2__]);\n_lib_authContext__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\n\n\nfunction App({ Component, pageProps }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_lib_authContext__WEBPACK_IMPORTED_MODULE_2__.AuthProvider, {\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n            ...pageProps\n        }, void 0, false, {\n            fileName: \"/home/got/.openclaw/workspace/meowworks/frontend/pages/_app.js\",\n            lineNumber: 7,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"/home/got/.openclaw/workspace/meowworks/frontend/pages/_app.js\",\n        lineNumber: 6,\n        columnNumber: 5\n    }, this);\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wYWdlcy9fYXBwLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7QUFBK0I7QUFDbUI7QUFFbkMsU0FBU0MsSUFBSSxFQUFFQyxTQUFTLEVBQUVDLFNBQVMsRUFBRTtJQUNsRCxxQkFDRSw4REFBQ0gsMERBQVlBO2tCQUNYLDRFQUFDRTtZQUFXLEdBQUdDLFNBQVM7Ozs7Ozs7Ozs7O0FBRzlCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vYWktYWdlbnQtbWFuYWdlci1mcm9udGVuZC8uL3BhZ2VzL19hcHAuanM/ZTBhZCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJy4uL3N0eWxlcy9nbG9iYWxzLmNzcyc7XG5pbXBvcnQgeyBBdXRoUHJvdmlkZXIgfSBmcm9tICcuLi9saWIvYXV0aENvbnRleHQnO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBBcHAoeyBDb21wb25lbnQsIHBhZ2VQcm9wcyB9KSB7XG4gIHJldHVybiAoXG4gICAgPEF1dGhQcm92aWRlcj5cbiAgICAgIDxDb21wb25lbnQgey4uLnBhZ2VQcm9wc30gLz5cbiAgICA8L0F1dGhQcm92aWRlcj5cbiAgKTtcbn1cbiJdLCJuYW1lcyI6WyJBdXRoUHJvdmlkZXIiLCJBcHAiLCJDb21wb25lbnQiLCJwYWdlUHJvcHMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./pages/_app.js\n");
+
+/***/ }),
+
+/***/ "./styles/globals.css":
+/*!****************************!*\
+  !*** ./styles/globals.css ***!
+  \****************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/pages.runtime.dev.js":
+/*!**********************************************************************!*\
+  !*** external "next/dist/compiled/next-server/pages.runtime.dev.js" ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/compiled/next-server/pages.runtime.dev.js");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-dom":
+/*!****************************!*\
+  !*** external "react-dom" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react-dom");
+
+/***/ }),
+
+/***/ "react/jsx-dev-runtime":
+/*!****************************************!*\
+  !*** external "react/jsx-dev-runtime" ***!
+  \****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react/jsx-dev-runtime");
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!************************************!*\
+  !*** external "react/jsx-runtime" ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "zlib":
+/*!***********************!*\
+  !*** external "zlib" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = import("axios");;
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("./pages/_app.js")));
+module.exports = __webpack_exports__;
+
+})();

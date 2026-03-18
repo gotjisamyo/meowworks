@@ -37,4 +37,23 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
-Add whatever helps you do your job. This is your cheat sheet.
+## New Skills Available
+
+### 📣 Distribution & Media
+- **openai-image-gen** - สร้างภาพ Banner, โฆษณา, Mockup
+- **canvas** - ออกแบบ UI/UX Mockup
+- **openai-whisper** - ถอดความเสียงเป็นข้อความ
+
+### 🤝 Communication & Sales
+- **discord** - ตั้ง Discord Bot
+- **slack** - ตั้ง Slack Bot
+- **github** - จัดการ Project, Issues, Tasks
+
+### 🛡️ Security & Ops
+- **1password** - เก็บรหัวผ่าน, API Keys อย่างปลอดภัย
+- **healthcheck** - ตรวจสอบเซิร์ฟเวอร์/เว็บ
+
+### 🧠 Knowledge & Docs
+- **notion** - Sync เอกสารไป Notion
+- **obsidian** - จัดการ Knowledge Base
+- **blogwatcher** - สแกนข่าว/เทรนด์หาไอเดีย
