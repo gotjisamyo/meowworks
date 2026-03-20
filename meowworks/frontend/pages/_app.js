@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/responsive.css';
 import { AuthProvider } from '../lib/authContext';
 
 export default function App({ Component, pageProps }) {

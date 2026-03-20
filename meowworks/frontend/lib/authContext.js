@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { API_BASE_URL, API_ORIGIN } from './clientApi';
 
 const AuthContext = createContext(null);
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_ORIGIN;
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -25,16 +25,15 @@ export function AuthProvider({ children }) {
     }
 
     try {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      const response = await axios.get(`${API_URL}/api/auth/me`);
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      const response = await axios.get(`${API_BASE_URL}/auth/me`);
       setUser(response.data.user);
-      
-      // Load shops if user has shops
+
       if (response.data.shops) {
         setShops(response.data.shops);
         const savedShopId = localStorage.getItem('selectedShopId');
         if (savedShopId) {
-          const shop = response.data.shops.find(s => s.id === savedShopId);
+          const shop = response.data.shops.find((s) => s.id === savedShopId);
           if (shop) setSelectedShop(shop);
         } else if (response.data.shops.length > 0) {
           setSelectedShop(response.data.shops[0]);
@@ -43,7 +42,7 @@ export function AuthProvider({ children }) {
     } catch (error) {
       console.error('Auth check failed:', error);
       localStorage.removeItem('token');
-      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common.Authorization;
     } finally {
       setLoading(false);
     }
@@ -51,18 +50,14 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/api/auth/login`, {
-        email,
-        password,
-      });
-
+      const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       const { token, user, shops } = response.data;
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
       setUser(user);
       setShops(shops || []);
-      
+
       if (shops && shops.length > 0) {
         setSelectedShop(shops[0]);
         localStorage.setItem('selectedShopId', shops[0].id);
@@ -77,17 +72,11 @@ export function AuthProvider({ children }) {
 
   const register = async (name, email, password, shopName) => {
     try {
-      const response = await axios.post(`${API_URL}/api/auth/register`, {
-        name,
-        email,
-        password,
-        shopName,
-      });
-
+      const response = await axios.post(`${API_URL}/api/auth/register`, { name, email, password, shopName });
       const { token, user, shop } = response.data;
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
       setUser(user);
       setShops(shop ? [shop] : []);
       if (shop) {
@@ -105,7 +94,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('selectedShopId');
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common.Authorization;
     setUser(null);
     setShops([]);
     setSelectedShop(null);
@@ -123,12 +112,12 @@ export function AuthProvider({ children }) {
       const response = await axios.post(`${API_URL}/api/shops`, shopData, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      
+
       const newShop = response.data.shop;
-      setShops(prev => [...prev, newShop]);
+      setShops((prev) => [...prev, newShop]);
       setSelectedShop(newShop);
       localStorage.setItem('selectedShopId', newShop.id);
-      
+
       return { success: true, shop: newShop };
     } catch (error) {
       const message = error.response?.data?.message || 'Failed to create shop';
@@ -150,21 +139,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        register,
-        logout,
-        isAuthenticated: !!user,
-        shops,
-        selectedShop,
-        selectShop,
-        createShop,
-        fetchShops,
-      }}
-    >
+    <AuthContext.Provider value={{ user, loading, login, register, logout, isAuthenticated: !!user, shops, selectedShop, selectShop, createShop, fetchShops }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,22 +1,33 @@
 import { useState } from 'react';
 import AdminLayout from '../../components/AdminLayout';
 
+const envLineChannelId = process.env.NEXT_PUBLIC_LINE_CHANNEL_ID || '';
+const envWebhookUrl = process.env.NEXT_PUBLIC_LINE_WEBHOOK_URL || 'https://meowchat.store/api/webhook';
+const envLineChannelSecret = process.env.NEXT_PUBLIC_LINE_CHANNEL_SECRET || '';
+const envLineAccessToken = process.env.NEXT_PUBLIC_LINE_ACCESS_TOKEN || '';
+
+const maskSecret = (value, fallback = 'ยังไม่ได้ตั้งค่าใน .env') => {
+  if (!value) return fallback;
+  if (value.length <= 8) return '•'.repeat(value.length);
+  return `${value.slice(0, 4)}${'•'.repeat(Math.max(4, value.length - 8))}${value.slice(-4)}`;
+};
+
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('general');
   const [settings, setSettings] = useState({
-    shopName: 'MeowChat',
-    shopEmail: 'contact@meowchat.store',
+    shopName: 'MeowChat Cafe',
+    shopEmail: 'hello@meowchat.cafe',
     shopPhone: '089-123-4567',
     currency: 'THB',
     timezone: 'Asia/Bangkok',
     language: 'th',
-    lineChannelId: '2009479206',
-    lineChannelSecret: 'bcf10af6467eb012fb5df3d24b0d6de9',
-    lineAccessToken: 'xYbF9dlftMZI236ZgRaJK...',
-    webhookUrl: 'https://meowchat.store/api/webhook',
+    lineChannelId: envLineChannelId || 'ใส่ NEXT_PUBLIC_LINE_CHANNEL_ID ใน .env',
+    lineChannelSecret: maskSecret(envLineChannelSecret),
+    lineAccessToken: maskSecret(envLineAccessToken),
+    webhookUrl: envWebhookUrl,
     bankName: 'กสิกรไทย',
     bankAccount: '123-456-7890',
-    bankAccountName: 'บริษัท เมาส์ซอม จำกัด',
+    bankAccountName: 'บริษัท เมี้ยวเวิร์คส์ จำกัด',
     qrPayment: 'https://promptpay.io/0891234567.png',
     emailNotifications: true,
     lineNotifications: false,
@@ -39,7 +50,6 @@ export default function SettingsPage() {
   return (
     <AdminLayout title="⚙️ ตั้งค่า">
       <div className="flex gap-6">
-        {/* Sidebar Tabs */}
         <div className="w-48 flex-shrink-0">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-2">
             {tabs.map((tab) => (
@@ -59,9 +69,7 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Content */}
         <div className="flex-1">
-          {/* General Settings */}
           {activeTab === 'general' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
               <h3 className="text-lg font-bold text-gray-800 mb-6">⚙️ ตั้งค่าทั่วไป</h3>
@@ -116,10 +124,10 @@ export default function SettingsPage() {
             </div>
           )}
 
-          {/* LINE Settings */}
           {activeTab === 'line' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-6">💬 ตั้งค่า LINE</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">💬 ตั้งค่า LINE</h3>
+              <p className="text-sm text-gray-500 mb-6">ค่า Secret และ Access Token ถูกย้ายออกจากโค้ดแล้ว ให้ตั้งค่าผ่านไฟล์ .env ของ frontend แทนค่ะ</p>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Channel ID</label>
@@ -130,25 +138,27 @@ export default function SettingsPage() {
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-50"
                     disabled
                   />
-                  <p className="text-xs text-gray-500 mt-1">ไม่สามารถแก้ไขได้</p>
+                  <p className="text-xs text-gray-500 mt-1">กำหนดผ่าน NEXT_PUBLIC_LINE_CHANNEL_ID</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Channel Secret</label>
                   <input
                     type="password"
                     value={settings.lineChannelSecret}
-                    onChange={(e) => setSettings({...settings, lineChannelSecret: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    readOnly
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-50"
                   />
+                  <p className="text-xs text-gray-500 mt-1">กำหนดผ่าน NEXT_PUBLIC_LINE_CHANNEL_SECRET</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Access Token</label>
                   <input
                     type="password"
                     value={settings.lineAccessToken}
-                    onChange={(e) => setSettings({...settings, lineAccessToken: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    readOnly
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-50"
                   />
+                  <p className="text-xs text-gray-500 mt-1">กำหนดผ่าน NEXT_PUBLIC_LINE_ACCESS_TOKEN</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Webhook URL</label>
@@ -158,6 +168,9 @@ export default function SettingsPage() {
                     onChange={(e) => setSettings({...settings, webhookUrl: e.target.value})}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
+                </div>
+                <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800">
+                  เพื่อความปลอดภัย อย่า commit token/secret จริงลง repo อีกนะคะ
                 </div>
                 <div className="pt-4 border-t border-gray-100 flex gap-3">
                   <button onClick={handleSave} className="px-6 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700">
@@ -171,7 +184,6 @@ export default function SettingsPage() {
             </div>
           )}
 
-          {/* Payment Settings */}
           {activeTab === 'payment' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
               <h3 className="text-lg font-bold text-gray-800 mb-6">💰 ตั้งค่าการเงิน</h3>
@@ -230,7 +242,6 @@ export default function SettingsPage() {
             </div>
           )}
 
-          {/* Notifications Settings */}
           {activeTab === 'notifications' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
               <h3 className="text-lg font-bold text-gray-800 mb-6">🔔 ตั้งค่าแจ้งเตือน</h3>
