@@ -32,12 +32,30 @@ Add 3 columns to `shops` table via `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` in
 
 ## Backend
 
+### Shared Helper: src/utils/line-push.js (new file)
+
+Extract `pushToLine` into a shared utility so `index.js`, `bots.js`, and `line.js` can all use it:
+
+```javascript
+const axios = require('axios');
+async function pushToLine(userId, text, accessToken) {
+  await axios.post(
+    'https://api.line.me/v2/bot/message/push',
+    { to: userId, messages: [{ type: 'text', text }] },
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  ).catch(err => console.error('[LINE push error]', err.response?.data || err.message));
+}
+module.exports = { pushToLine };
+```
+
+`routes/line.js` updates its own `pushToLine` to import from this helper instead.
+
 ### New Endpoints (routes/bots.js)
 
 **`POST /api/bots/:botId/owner-line/pair`**
 - Auth: merchant JWT (existing authMiddleware)
-- Generate 6-char random code (A-Z + 0-9)
-- Save `pairing_code` + `pairing_code_expires_at = NOW() + 10 minutes` to shops
+- Generate 6-char random code (A-Z + 0-9), uppercase only
+- Save `pairing_code` + `pairing_code_expires_at = datetime('now', '+10 minutes')` (SQLite syntax)
 - Return `{ code: "ABC123", expires_in: 600 }`
 
 **`GET /api/bots/:botId/owner-line/status`**
@@ -56,7 +74,7 @@ In `processEvent`, before routing to AI — check if message matches active pair
 
 ```
 1. SELECT pairing_code, pairing_code_expires_at FROM shops WHERE id = shopId
-2. If userText matches pairing_code AND expires_at > NOW():
+2. If userText.trim().toUpperCase() matches pairing_code AND expires_at > datetime('now') (SQLite):
    a. UPDATE shops SET owner_line_user_id = userId, pairing_code = NULL, pairing_code_expires_at = NULL
    b. Reply: "✅ เชื่อมต่อสำเร็จ! คุณจะได้รับแจ้งเตือน Handoff ทาง LINE นี้ค่ะ"
    c. return (do NOT pass to AI)
