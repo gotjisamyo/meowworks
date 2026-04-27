@@ -2,10 +2,10 @@ import { trackCTA } from '../../lib/analytics';
 import { PRIMARY_CTA_HREF, PRIMARY_CTA_LABEL } from '../../lib/site';
 
 const STEPS = [
-  { num: 1, icon: '🐾', title: 'เริ่มทดลองใช้ฟรี', desc: 'เริ่มลองได้ก่อน ไม่ต้องใช้บัตรเครดิต และไม่ต้องมีทีมเทคนิค' },
-  { num: 2, icon: '💚', title: 'เชื่อม LINE OA เดิม', desc: 'ใช้กับบัญชี LINE OA ของร้านคุณได้เลย แล้วค่อยตั้งค่าสิ่งที่จำเป็นก่อน' },
-  { num: 3, icon: '🛍️', title: 'บอกงานหลักของร้าน', desc: 'เช่น ถามราคา รับออเดอร์ จองคิว หรือเก็บข้อมูลลูกค้าที่ถามเข้ามาบ่อย' },
-  { num: 4, icon: '💬', title: 'เริ่มให้ระบบช่วยตอบ', desc: 'ให้ AI รับหน้าแรกก่อน แล้วส่งต่อให้ทีมเมื่อเป็นเคสที่ต้องใช้คนดูแลต่อ' },
+  { num: 1, icon: '🐾', mascot: '😺', title: 'เริ่มทดลองใช้ฟรี', desc: 'เริ่มลองได้ก่อน ไม่ต้องใช้บัตรเครดิต และไม่ต้องมีทีมเทคนิค' },
+  { num: 2, icon: '💚', mascot: '🐱', title: 'เชื่อม LINE OA เดิม', desc: 'ใช้กับบัญชี LINE OA ของร้านคุณได้เลย แล้วค่อยตั้งค่าสิ่งที่จำเป็นก่อน' },
+  { num: 3, icon: '🛍️', mascot: '😸', title: 'บอกงานหลักของร้าน', desc: 'เช่น ถามราคา รับออเดอร์ จองคิว หรือเก็บข้อมูลลูกค้าที่ถามเข้ามาบ่อย' },
+  { num: 4, icon: '💬', mascot: '😻', title: 'เริ่มให้ระบบช่วยตอบ', desc: 'ให้ AI รับหน้าแรกก่อน แล้วส่งต่อให้ทีมเมื่อเป็นเคสที่ต้องใช้คนดูแลต่อ' },
 ];
 
 export default function HowItWorks() {
@@ -29,6 +29,8 @@ export default function HowItWorks() {
               <div className="hidden lg:block absolute top-10 left-full w-full h-px border-t border-dashed border-white/10 z-0" />
             )}
             <div className="rounded-[26px] border border-white/8 bg-white/[0.04] p-6 hover:border-brand-green/30 transition-colors relative z-10 text-center h-full card-glow">
+              {/* Mascot above step number */}
+              <div className="text-2xl mb-1 mascot-bob">{s.mascot}</div>
               <div className="w-11 h-11 rounded-full bg-brand-green/12 border border-brand-green/30 text-brand-green font-black text-lg flex items-center justify-center mx-auto mb-4">
                 {s.num}
               </div>
