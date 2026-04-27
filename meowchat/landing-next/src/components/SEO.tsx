@@ -48,13 +48,6 @@ export default function SEO({
       { '@type': 'Offer', price: '490', priceCurrency: 'THB', name: 'Starter' },
       { '@type': 'Offer', price: '990', priceCurrency: 'THB', name: 'Pro' },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '3',
-      bestRating: '5',
-      worstRating: '1',
-    },
     description,
     url: canonical,
   };
@@ -64,11 +57,6 @@ export default function SEO({
     '@type': 'WebSite',
     name: BRAND_NAME,
     url: SITE_URL,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${SITE_URL}/?s={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    }
   };
 
   const faqJsonLd = faqSchema
