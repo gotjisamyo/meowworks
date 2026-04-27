@@ -45,6 +45,13 @@ export default function TrustStrip() {
           </div>
 
           <div className="grid sm:grid-cols-3 lg:grid-cols-1 gap-3">
+            <div className="flex items-center gap-2 rounded-2xl border border-brand-mascot/20 bg-brand-mascot/8 px-5 py-3">
+              <span className="text-xl">🐱</span>
+              <div>
+                <div className="text-lg font-black text-brand-mascot leading-none">500+</div>
+                <div className="text-xs text-white/50 font-medium">ร้านค้าใช้แล้ว</div>
+              </div>
+            </div>
             {PROOF_STATS.map((item) => (
               <div key={item.value + item.label} className="rounded-2xl border border-white/8 bg-[#0f1728] px-5 py-5 md:px-6 md:py-6">
                 <div className="text-3xl md:text-4xl font-black text-white mb-2">{item.value}</div>
