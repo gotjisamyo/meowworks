@@ -34,7 +34,13 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 pt-24 pb-20 md:pt-28 md:pb-24">
         <div className="grid lg:grid-cols-[0.98fr_1.02fr] gap-10 items-center">
           <div>
-            <div className="eyebrow mb-5">ผู้ช่วย LINE OA สำหรับธุรกิจไทย</div>
+            <div className="flex items-center gap-3 mb-5 flex-wrap">
+              <div className="eyebrow">ผู้ช่วย LINE OA สำหรับธุรกิจไทย</div>
+              <div className="flex items-center gap-1.5 rounded-full border border-brand-mascot/30 bg-brand-mascot/10 px-3 py-1 text-xs font-bold text-brand-mascot">
+                <span>🐱</span>
+                <span>500+ ร้านค้าใช้แล้ว</span>
+              </div>
+            </div>
 
             <h1 className="text-4xl md:text-6xl font-black leading-[1.04] mb-5 max-w-4xl text-white">
               ให้ LINE OA ของร้านคุณ
@@ -89,7 +95,16 @@ export default function Hero() {
             <div className="rounded-[30px] border border-white/8 bg-[#101827]/94 p-5 md:p-6 card-glow-strong">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-brand-blush/12 border border-brand-blush/20 flex items-center justify-center text-xl">🐱</div>
+                  <div className="relative w-11 h-11 flex-shrink-0">
+                    <img
+                      src="/hero-cat.png"
+                      alt="แมวส้ม MeowChat mascot"
+                      width={44}
+                      height={44}
+                      className="rounded-2xl object-cover mascot-float"
+                    />
+                    <div className="absolute inset-0 rounded-2xl bg-brand-mascot/8 blur-xl -z-10" />
+                  </div>
                   <div>
                     <div className="font-semibold text-sm text-white">MeowChat</div>
                     <div className="text-xs text-white/42">ตัวอย่างแชทที่ร้านและทีมใช้ต่อได้จริง</div>
