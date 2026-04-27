@@ -106,7 +106,7 @@ Page order (conversion-funnel optimized):
 ```
 <Nav>               sticky, glassmorphism
 <Hero>              split layout — copy left, chat mockup right, mascot in mockup
-<TrustStrip>        business type icons + "1,000+ ร้านใช้แล้ว" counter
+<TrustStrip>        business type icons + "500+ ร้านค้าใช้แล้ว" counter
 <ProductShowcase>   animated demo walkthrough
 <Features>          3-column feature cards, mascot pointing at center card
 <UseCases>          tabbed by industry (ร้านอาหาร / คลินิก / ออนไลน์ / บริการ)
@@ -131,7 +131,7 @@ Page order (conversion-funnel optimized):
 
 | Feature | MeowChat | ZWIZ.AI | Botnoi | LINE OA Free |
 |---|---|---|---|---|
-| ราคาเริ่มต้น | **฿490/เดือน** | ฿790/เดือน | ฿999/เดือน | ฟรี (จำกัด) |
+| ราคาเริ่มต้น | **฿490/เดือน** | [ดูราคา →](https://zwiz.ai) | [ดูราคา →](https://botnoi.ai) | ฟรี (จำกัด) |
 | ภาษาไทย native | ✅ | ✅ | ✅ | ❌ |
 | รับออเดอร์ + จองคิว | ✅ | บางแพ็ก | ❌ | ❌ |
 | ส่งต่อทีมพร้อม context | ✅ | ❌ | ❌ | ❌ |
@@ -149,8 +149,8 @@ Page order (conversion-funnel optimized):
 **Fix:**
 - Add 5-star rating display (static, golden stars)
 - Add role/business type as before
-- Add first name + initial (e.g., "คุณปาย — ร้านอาหาร กรุงเทพฯ")
-- Add แมวส้ม mascot (cozy pose) positioned bottom-right of grid
+- ใช้ role-only attribution: "เจ้าของร้านอาหาร, กรุงเทพฯ" (ไม่ระบุชื่อ — honest + legal-safe)
+- Add แมวส้ม mascot (cozy pose) positioned bottom-right of grid — ใช้ `footer-cats.png` crop ตัวส้มออก + CSS transform
 - Add `Review` structured data schema for each testimonial
 
 ---
@@ -190,7 +190,7 @@ Add/update schemas:
 - `WebSite` + `SearchAction` — existing, fix malformed JSON
 - `SoftwareApplication` — add `applicationCategory`, `operatingSystem`, `offers` with real pricing
 - `FAQPage` — existing, keep + expand to 8 questions
-- `Review` (aggregate) — add `AggregateRating` with 4.8/5 from testimonials
+- `Review` (aggregate) — add `AggregateRating` ratingValue: 5.0, reviewCount: 3 (จาก 3 testimonials ที่มีอยู่)
 - `BreadcrumbList` — add for industry pages
 
 ### 7.4 Technical SEO
@@ -231,7 +231,7 @@ Add/update schemas:
 | `components/SEO.tsx` | Edit | Fix malformed JSON-LD, add Review schema |
 | `components/Layout.tsx` | Edit | Update font preload |
 | `components/sections/Hero.tsx` | Edit | Add mascot to chat window, add social proof badge |
-| `components/sections/TrustStrip.tsx` | Edit | Add "1,000+ ร้านใช้แล้ว" counter |
+| `components/sections/TrustStrip.tsx` | Edit | Add "500+ ร้านค้าใช้แล้ว" counter + business type icons |
 | `components/sections/Features.tsx` | Edit | Add mascot pointing at center card |
 | `components/sections/HowItWorks.tsx` | Edit | Add mascot beside each step |
 | `components/sections/Pricing.tsx` | Edit | Add mascot above recommended plan |
