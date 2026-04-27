@@ -37,7 +37,11 @@ export default function Contact() {
     <section id="contact" className="py-28 max-w-5xl mx-auto px-4 text-center">
       <div className="rounded-[34px] border border-white/8 bg-white/[0.04] p-8 md:p-14 card-glow-strong relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(255,193,216,0.16),transparent_45%)]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,140,66,0.10),transparent_40%)]" />
         <div className="relative z-10">
+          <div className="flex justify-center mb-6">
+            <div className="text-7xl mascot-float">🐱</div>
+          </div>
           <div className="eyebrow mb-5">พร้อมเริ่มต้นกับ MeowChat</div>
           <h2 className="text-3xl md:text-5xl font-black mb-5 leading-tight text-white">
             ถ้าธุรกิจของคุณขายผ่าน LINE อยู่แล้ว
