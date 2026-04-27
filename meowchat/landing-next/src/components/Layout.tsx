@@ -147,12 +147,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="border-t border-white/6 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-white/34">
-            <div className="flex items-center gap-3">
-              <img src="/assets/footer-cats.png" alt="MeowChat cats" height={32} className="opacity-50" />
-              <p>© 2026 {BRAND_COMPANY}. All rights reserved.</p>
-            </div>
-            <p className="max-w-3xl">รองรับการใช้งานบน LINE OA พร้อมช่องทาง support ({SUPPORT_EMAIL}), privacy ({PRIVACY_EMAIL}), legal ({LEGAL_EMAIL}) และ DPA ({DPA_EMAIL})</p>
+          {/* Footer bottom: cats illustration */}
+          <div className="border-t border-white/6 pt-8 flex justify-center">
+            <img
+              src="/assets/footer-cats.png"
+              alt="MeowChat mascots"
+              width={180}
+              height={60}
+              className="opacity-60"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Copyright row — separate from illustration */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 pt-4 pb-6 text-xs text-white/34">
+            <p>© 2026 {BRAND_COMPANY}. All rights reserved.</p>
+            <p className="text-center md:text-right max-w-xl">
+              รองรับการใช้งานบน LINE OA พร้อมช่องทาง support ({SUPPORT_EMAIL}), privacy ({PRIVACY_EMAIL}), legal ({LEGAL_EMAIL}) และ DPA ({DPA_EMAIL})
+            </p>
           </div>
         </div>
       </footer>
