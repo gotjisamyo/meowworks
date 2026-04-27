@@ -1,19 +1,25 @@
+import { trackCTA } from '../../lib/analytics';
+import { PRIMARY_CTA_HREF, PRIMARY_CTA_LABEL } from '../../lib/site';
+
 const STEPS = [
-  { num: 1, icon: '🐾', title: 'สมัครฟรี', desc: 'ลงทะเบียนใน 2 นาที ไม่ต้องใช้บัตรเครดิต เริ่มใช้งานได้ทันที' },
-  { num: 2, icon: '🔗', title: 'เชื่อม LINE OA', desc: 'นำ Channel Access Token มาวางในระบบ ใช้เวลาเพียง 5 นาที' },
-  { num: 3, icon: '🧠', title: 'สอน AI', desc: 'เพิ่มสินค้า FAQ และตั้งค่าบุคลิก AI ให้ตอบแทนได้อย่างเป็นธรรมชาติ' },
-  { num: 4, icon: '💰', title: 'รอรับเงิน', desc: 'เปิดร้าน AI ตอบแชทแทนคุณ 24/7 คุณมีเวลาไปโฟกัสสิ่งสำคัญกว่า' },
+  { num: 1, icon: '🐾', title: 'เริ่มทดลองใช้ฟรี', desc: 'เริ่มลองได้ก่อน ไม่ต้องใช้บัตรเครดิต และไม่ต้องมีทีมเทคนิค' },
+  { num: 2, icon: '💚', title: 'เชื่อม LINE OA เดิม', desc: 'ใช้กับบัญชี LINE OA ของร้านคุณได้เลย แล้วค่อยตั้งค่าสิ่งที่จำเป็นก่อน' },
+  { num: 3, icon: '🛍️', title: 'บอกงานหลักของร้าน', desc: 'เช่น ถามราคา รับออเดอร์ จองคิว หรือเก็บข้อมูลลูกค้าที่ถามเข้ามาบ่อย' },
+  { num: 4, icon: '💬', title: 'เริ่มให้ระบบช่วยตอบ', desc: 'ให้ AI รับหน้าแรกก่อน แล้วส่งต่อให้ทีมเมื่อเป็นเคสที่ต้องใช้คนดูแลต่อ' },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 max-w-6xl mx-auto px-4">
-      <div className="text-center mb-14">
-        <div className="inline-block bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-sm font-bold px-4 py-1.5 rounded-full mb-4">
-          🚀 วิธีการใช้งาน
-        </div>
-        <h2 className="text-3xl md:text-4xl font-black mb-3">เริ่มต้นง่าย ใน 4 ขั้นตอน</h2>
-        <p className="text-white/50 text-lg">ไม่ต้องเขียน code ไม่ต้องมีความรู้เทคนิค ตั้งค่าเสร็จในชั่วโมงเดียว</p>
+    <section id="how-it-works" className="py-24 max-w-6xl mx-auto px-4">
+      <div className="text-center mb-14 max-w-3xl mx-auto">
+        <div className="eyebrow mb-4">เริ่มต้นใช้งานง่าย</div>
+        <h2 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
+          เริ่มจากสิ่งที่ร้านคุณใช้อยู่แล้ว
+          <span className="block text-white/56">ไม่ต้องยกเครื่องใหม่ทั้งหมดตั้งแต่วันแรก</span>
+        </h2>
+        <p className="text-white/62 text-lg leading-8">
+          MeowChat ถูกออกแบบมาให้เริ่มง่ายสำหรับทีมไทย ใช้กับ LINE OA เดิมได้ และค่อย ๆ เพิ่ม flow ตามงานจริงของร้านคุณ
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -22,13 +28,13 @@ export default function HowItWorks() {
             {i < STEPS.length - 1 && (
               <div className="hidden lg:block absolute top-10 left-full w-full h-px border-t border-dashed border-white/10 z-0" />
             )}
-            <div className="bg-brand-card rounded-2xl p-6 border border-white/5 hover:border-brand-orange/20 transition-colors relative z-10 text-center">
-              <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange font-black text-lg flex items-center justify-center mx-auto mb-4">
+            <div className="rounded-[26px] border border-white/8 bg-white/[0.04] p-6 hover:border-brand-green/30 transition-colors relative z-10 text-center h-full card-glow">
+              <div className="w-11 h-11 rounded-full bg-brand-green/12 border border-brand-green/30 text-brand-green font-black text-lg flex items-center justify-center mx-auto mb-4">
                 {s.num}
               </div>
-              <div className="text-3xl mb-3">{s.icon}</div>
-              <h3 className="font-bold text-lg mb-2">{s.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed">{s.desc}</p>
+              <div className="text-3xl mb-4">{s.icon}</div>
+              <h3 className="font-semibold text-xl mb-3 text-white">{s.title}</h3>
+              <p className="text-white/58 text-sm leading-7">{s.desc}</p>
             </div>
           </div>
         ))}
@@ -36,10 +42,11 @@ export default function HowItWorks() {
 
       <div className="mt-10 text-center">
         <a
-          href="https://my.meowchat.store/register"
-          className="inline-flex items-center gap-2 bg-brand-orange text-white font-black text-lg px-8 py-4 rounded-2xl hover:opacity-90 transition-opacity shadow-lg shadow-brand-orange/20"
+          href={PRIMARY_CTA_HREF}
+          onClick={() => trackCTA({ location: 'how_it_works', label: PRIMARY_CTA_LABEL, destination: PRIMARY_CTA_HREF, variant: 'primary' })}
+          className="inline-flex items-center gap-2 bg-brand-green text-white font-bold text-lg px-8 py-4 rounded-2xl hover:opacity-95 transition-opacity shadow-lg shadow-brand-green/20"
         >
-          เริ่มตอนนี้ฟรี — ไม่ต้องใช้บัตร 🐾
+          {PRIMARY_CTA_LABEL}
         </a>
       </div>
     </section>
