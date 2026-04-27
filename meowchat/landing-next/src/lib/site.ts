@@ -15,5 +15,5 @@ export const BRAND_NAME = 'MeowChat';
 export const BRAND_COMPANY = 'Mawsom Company Limited';
 export const BRAND_TAGLINE = 'AI ผู้ช่วยตอบแชทบน LINE OA สำหรับธุรกิจไทย';
 
-export const DEFAULT_TITLE = 'MeowChat | AI ผู้ช่วยตอบแชทบน LINE OA สำหรับธุรกิจไทย';
-export const DEFAULT_DESCRIPTION = 'MeowChat ช่วยธุรกิจไทยที่ใช้ LINE OA ตอบลูกค้าอัตโนมัติ 24/7 รับออเดอร์ การจอง และส่งต่อให้ทีมเมื่อจำเป็น ทดลองใช้ฟรี 14 วัน ไม่ต้องใช้บัตรเครดิต';
+export const DEFAULT_TITLE = 'MeowChat — ระบบตอบแชทอัตโนมัติ LINE OA | ทดลองฟรี 14 วัน';
+export const DEFAULT_DESCRIPTION = 'MeowChat ระบบ AI ตอบแชทอัตโนมัติสำหรับ LINE OA ธุรกิจไทย ตอบลูกค้า รับออเดอร์ จองคิว และส่งต่อทีมอัตโนมัติ ราคาเริ่ม ฿490/เดือน ทดลองฟรี 14 วัน';

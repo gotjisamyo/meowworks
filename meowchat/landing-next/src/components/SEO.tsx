@@ -44,13 +44,31 @@ export default function SEO({
     name: BRAND_NAME,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '490',
-      priceCurrency: 'THB',
+    offers: [
+      { '@type': 'Offer', price: '490', priceCurrency: 'THB', name: 'Starter' },
+      { '@type': 'Offer', price: '990', priceCurrency: 'THB', name: 'Pro' },
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      reviewCount: '3',
+      bestRating: '5',
+      worstRating: '1',
     },
     description,
     url: canonical,
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: BRAND_NAME,
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/?s={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    }
   };
 
   const faqJsonLd = faqSchema
@@ -92,6 +110,7 @@ export default function SEO({
       <meta name="twitter:site" content={LINE_HANDLE} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       {faqJsonLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
