@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { BRAND_NAME, DEFAULT_DESCRIPTION, DEFAULT_TITLE, LINE_HANDLE, SITE_URL, SUPPORT_EMAIL } from '../lib/site';
 
 interface SEOProps {
   title?: string;
@@ -6,32 +7,32 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   faqSchema?: { q: string; a: string }[];
-  articleSchema?: object;
+  noindex?: boolean;
 }
 
-const SITE_URL = 'https://meowchat.store';
-const DEFAULT_OG = `${SITE_URL}/assets/og-image.png`;
+const DEFAULT_OG = `${SITE_URL}/assets/og-image.svg`;
 
 export default function SEO({
-  title = 'MeowChat - AI Chatbot สำหรับธุรกิจไทย | LINE Bot ตอบแชทอัตโนมัติ 24/7',
-  description = 'MeowChat AI Chatbot สำหรับธุรกิจไทย ตอบแชท LINE อัตโนมัติ ปิดการขาย จัดการออเดอร์ อัพเดทสต็อก ดูยอดขาย พร้อม 24 ชม. ทดลองใช้ฟรี 14 วัน ไม่ต้องใช้บัตรเครดิต',
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
   canonical = SITE_URL,
   ogImage = DEFAULT_OG,
   faqSchema,
+  noindex = false,
 }: SEOProps) {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'MeowChat',
+    name: BRAND_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/assets/logo.png`,
-    description: 'AI Chatbot สำหรับธุรกิจไทย',
-    foundingDate: '2024',
-    address: { '@type': 'PostalAddress', addressLocality: 'Bangkok', addressCountry: 'TH' },
+    logo: `${SITE_URL}/assets/hero-cat.png`,
+    description,
+    address: { '@type': 'PostalAddress', addressCountry: 'TH' },
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'customer service',
-      availableLanguage: 'Thai',
+      contactType: 'customer support',
+      availableLanguage: ['Thai'],
+      email: SUPPORT_EMAIL,
       url: 'https://line.me/ti/p/@960xboyt',
     },
     sameAs: ['https://line.me/ti/p/@960xboyt'],
@@ -40,16 +41,21 @@ export default function SEO({
   const softwareSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'MeowChat',
+    name: BRAND_NAME,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '490',
-      priceCurrency: 'THB',
-      priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
-    },
+    offers: [
+      { '@type': 'Offer', price: '490', priceCurrency: 'THB', name: 'Starter' },
+      { '@type': 'Offer', price: '990', priceCurrency: 'THB', name: 'Pro' },
+    ],
     description,
+    url: canonical,
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: BRAND_NAME,
     url: SITE_URL,
   };
 
@@ -69,42 +75,33 @@ export default function SEO({
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
       <meta name="language" content="Thai" />
       <meta name="geo.region" content="TH" />
+      <meta name="theme-color" content="#0D0D14" />
       <link rel="canonical" href={canonical} />
       <link rel="alternate" hrefLang="th" href={canonical} />
       <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
 
-      {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="MeowChat" />
+      <meta property="og:site_name" content={BRAND_NAME} />
       <meta property="og:locale" content="th_TH" />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:site" content={LINE_HANDLE} />
 
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       {faqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       )}
     </Head>
   );

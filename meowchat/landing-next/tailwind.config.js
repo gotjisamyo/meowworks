@@ -4,9 +4,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: { orange: '#FF6B35', dark: '#0D0D14', card: '#151520' },
+        brand: {
+          pink: '#FF6B9A',
+          rose: '#FF9FC0',
+          blush: '#FFE7F0',
+          orange: '#FFB36B',
+          peach: '#FFD6B3',
+          green: '#31C36A',
+          dark: '#080713',
+          mascot: '#FF8C42',
+          card: '#FFF7FB',
+          muted: '#6A7083',
+          soft: '#FFFDFB',
+        },
       },
-      fontFamily: { sans: ['Nunito', 'sans-serif'] },
+      fontFamily: { sans: ['Noto Sans Thai', 'system-ui', 'sans-serif'] },
     },
   },
   plugins: [],

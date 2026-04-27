@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background gradient: orange to white -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFF5EE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- White card area -->
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="white" fill-opacity="0.15" />
+
+  <!-- Cat paw icon placeholder -->
+  <text x="120" y="200" font-family="Arial, sans-serif" font-size="100" fill="white" opacity="0.9">🐾</text>
+
+  <!-- Main heading -->
+  <text x="120" y="310" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="white">MeowChat</text>
+
+  <!-- Sub heading -->
+  <text x="120" y="390" font-family="Arial, sans-serif" font-size="40" font-weight="600" fill="white" opacity="0.95">AI Chatbot สำหรับธุรกิจไทย</text>
+
+  <!-- Description -->
+  <text x="120" y="455" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">ตอบแชทอัตโนมัติ ปิดการขาย จัดการออเดอร์ พร้อม 24 ชม.</text>
+
+  <!-- Domain tag -->
+  <rect x="120" y="490" width="280" height="48" rx="24" fill="white" fill-opacity="0.25" />
+  <text x="260" y="522" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" font-weight="600">meowchat.store</text>
+</svg>

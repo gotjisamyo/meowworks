@@ -1,87 +1,108 @@
-/* Contact section — ALWAYS included in index.tsx, never removed */
-import { useState } from 'react';
+import { trackCTA } from '../../lib/analytics';
+import {
+  BRAND_COMPANY,
+  LINE_HANDLE,
+  PRIMARY_CTA_HREF,
+  PRIMARY_CTA_LABEL,
+  PRIVACY_EMAIL,
+  SECONDARY_CTA_HREF,
+  SECONDARY_CTA_LABEL,
+  SUPPORT_EMAIL,
+} from '../../lib/site';
 
-function LeadForm() {
-  const [value, setValue] = useState('');
-  const [sent, setSent] = useState(false);
+const CHECKLIST = [
+  'ทดลองใช้ฟรี 14 วัน',
+  'ใช้กับ LINE OA เดิมของคุณ',
+  'คุยรูปแบบการใช้งานกับทีมได้ก่อน',
+  'ทีมซัพพอร์ตภาษาไทยช่วยเริ่มต้นใช้งานได้',
+];
 
-  const submit = () => {
-    if (!value.trim()) return;
-    setSent(true);
-  };
-
-  if (sent) {
-    return (
-      <div className="text-brand-orange font-semibold py-3">
-        ✅ บันทึกแล้ว! เราจะแจ้งคุณเมื่อมีโปรโมชั่น
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="อีเมลหรือเบอร์โทรศัพท์"
-        className="flex-1 bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-brand-orange/50"
-      />
-      <button
-        onClick={submit}
-        className="bg-brand-orange text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity whitespace-nowrap"
-      >
-        แจ้งเตือนฉัน 🔔
-      </button>
-    </div>
-  );
-}
+const TRUST_POINTS = [
+  {
+    title: 'มีทีมคุยงานจริงก่อนเริ่ม',
+    body: 'หากต้องการเช็กว่าร้านของคุณเหมาะกับแพ็กเกจไหน สามารถคุยกับทีมทาง LINE หรืออีเมลก่อนเริ่มใช้งานได้',
+  },
+  {
+    title: 'ซัพพอร์ตและการเริ่มต้นใช้งานภาษาไทย',
+    body: 'ทีมงานช่วยอธิบายการเชื่อม LINE OA การตั้งค่าพื้นฐาน และจุดที่ควรส่งต่อให้ทีมดูแลในเคสสำคัญ',
+  },
+  {
+    title: 'มีช่องทางติดต่อและเอกสารกำกับชัดเจน',
+    body: 'MeowChat ให้บริการโดย Mawsom Company Limited พร้อมช่องทางติดต่อด้าน support และ privacy บนเว็บไซต์',
+  },
+];
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 max-w-4xl mx-auto px-4 text-center">
-      {/* CTA block */}
-      <div className="bg-gradient-to-br from-brand-orange/10 to-transparent border border-brand-orange/20 rounded-3xl p-10 md:p-14 mb-12">
-        <div className="text-5xl mb-4">😺🐱😸</div>
-        <h2 className="text-3xl md:text-5xl font-black mb-4">พร้อมเริ่มต้นแล้วหรือยัง?</h2>
-        <p className="text-white/60 text-lg mb-8">
-          ทดลองใช้ฟรีวันนี้ ไม่ต้องใช้บัตรเครดิต เริ่มได้ใน 3 นาที
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="https://my.meowchat.store/register"
-            className="bg-brand-orange text-white font-black text-xl px-10 py-5 rounded-2xl hover:opacity-90 transition-opacity shadow-xl shadow-brand-orange/20"
-          >
-            🐾 สมัครใช้งานฟรี
-          </a>
-          <a
-            href="#features"
-            className="border border-white/20 text-white font-bold text-xl px-10 py-5 rounded-2xl hover:border-white/40 hover:bg-white/5 transition-all"
-          >
-            ดูฟีเจอร์ทั้งหมด
-          </a>
+    <section id="contact" className="py-28 max-w-5xl mx-auto px-4 text-center">
+      <div className="rounded-[34px] border border-white/8 bg-white/[0.04] p-8 md:p-14 card-glow-strong relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(255,193,216,0.16),transparent_45%)]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,140,66,0.10),transparent_40%)]" />
+        <div className="relative z-10">
+          <div className="flex justify-center mb-6">
+            <div className="text-7xl mascot-float">🐱</div>
+          </div>
+          <div className="eyebrow mb-5">พร้อมเริ่มต้นกับ MeowChat</div>
+          <h2 className="text-3xl md:text-5xl font-black mb-5 leading-tight text-white">
+            ถ้าธุรกิจของคุณขายผ่าน LINE อยู่แล้ว
+            <span className="block text-gradient mt-2">นี่คือเวลาที่ควรทำให้มันเป็นระบบขึ้น</span>
+          </h2>
+          <p className="text-white/64 text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-8">
+            เริ่มจากทดลองใช้ฟรี 14 วัน หรือคุยกับทีมก่อนเพื่อเช็กว่าร้านของคุณควรเริ่มจากจุดไหน
+            แล้วค่อยขยายการใช้งานต่อหลังจากเห็นรูปแบบจริง
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left mb-10">
+            {TRUST_POINTS.map((point) => (
+              <div key={point.title} className="rounded-[24px] border border-white/10 bg-[#111827]/55 p-5 md:p-6">
+                <div className="text-white font-bold text-base mb-2">{point.title}</div>
+                <p className="text-sm md:text-base text-white/60 leading-7">{point.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href={PRIMARY_CTA_HREF}
+              onClick={() => trackCTA({ location: 'final_cta', label: PRIMARY_CTA_LABEL, destination: PRIMARY_CTA_HREF, variant: 'primary' })}
+              className="bg-brand-green text-white font-bold text-xl px-10 py-5 rounded-2xl hover:opacity-95 transition-opacity shadow-lg shadow-brand-green/20"
+            >
+              {PRIMARY_CTA_LABEL}
+            </a>
+            <a
+              href={SECONDARY_CTA_HREF}
+              onClick={() => trackCTA({ location: 'final_cta', label: SECONDARY_CTA_LABEL, destination: SECONDARY_CTA_HREF, variant: 'secondary' })}
+              className="border border-white/10 bg-white/5 text-white font-semibold text-xl px-10 py-5 rounded-2xl hover:bg-white/10 transition-colors"
+            >
+              {SECONDARY_CTA_LABEL}
+            </a>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 text-sm md:text-base text-white/60 mb-10">
+            {CHECKLIST.map((item) => (
+              <div key={item} className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5">
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-[24px] border border-white/10 bg-[#0f1524]/80 px-5 py-5 md:px-7 md:py-6 text-left max-w-3xl mx-auto">
+            <div className="text-sm uppercase tracking-[0.16em] text-white/38 mb-3">ช่องทางติดต่อและความมั่นใจ</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm md:text-base text-white/62 leading-7">
+              <div>
+                <div className="font-semibold text-white mb-1">ช่องทางติดต่อหลัก</div>
+                <p>LINE Official: {LINE_HANDLE}</p>
+                <p>Support: <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#ffc1d8] hover:text-white transition-colors">{SUPPORT_EMAIL}</a></p>
+                <p>Privacy: <a href={`mailto:${PRIVACY_EMAIL}`} className="text-[#ffc1d8] hover:text-white transition-colors">{PRIVACY_EMAIL}</a></p>
+              </div>
+              <div>
+                <div className="font-semibold text-white mb-1">สำหรับธุรกิจที่ต้องการความมั่นใจเพิ่ม</div>
+                <p>ทีมงานตอบกลับเป็นภาษาไทยและช่วยแนะนำการเริ่มต้นใช้งานเบื้องต้นได้</p>
+                <p>ให้บริการโดย {BRAND_COMPANY}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Lead capture */}
-      <div className="bg-brand-card rounded-2xl border border-white/5 p-8">
-        <h3 className="text-xl font-black mb-2">สนใจแต่ยังไม่พร้อมสมัคร? 💌</h3>
-        <p className="text-white/50 text-sm mb-6">
-          รับข่าวสารและโปรโมชั่นก่อนใคร ไม่มี spam แจ้งเตือนเฉพาะโปรพิเศษเท่านั้น
-        </p>
-        <LeadForm />
-        <p className="text-white/30 text-xs mt-3">🔒 ข้อมูลของคุณปลอดภัย ไม่ถูกแชร์กับบุคคลภายนอก</p>
-      </div>
-
-      {/* Direct LINE contact */}
-      <div className="mt-8">
-        <p className="text-white/40 text-sm mb-3">หรือติดต่อเราโดยตรงผ่าน LINE</p>
-        <a
-          href="https://line.me/ti/p/@960xboyt"
-          className="inline-flex items-center gap-2 bg-[#00B900]/10 border border-[#00B900]/30 text-[#4CAF50] font-bold px-6 py-3 rounded-xl hover:bg-[#00B900]/20 transition-colors"
-        >
-          💬 LINE Official: @MeowChat
-        </a>
       </div>
     </section>
   );

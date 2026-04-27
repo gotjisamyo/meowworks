@@ -1,74 +1,88 @@
-const FEATURES = [
+const FEATURE_PILLARS = [
   {
-    icon: '💬',
-    title: 'ตอบแชทอัตโนมัติ',
-    desc: 'ตอบลูกค้าทุกข้อความทันที พร้อม 24 ชม. เข้าใจภาษาไทยได้ดี',
-    tags: ['ตอบทันที', '24/7', 'ภาษาไทย'],
+    title: 'รับหน้าแรกแทนทีม',
+    desc: 'ตอบคำถามซ้ำ ๆ และข้อความนอกเวลาทำการได้เร็วขึ้น โดยยังคุมรูปแบบการตอบของธุรกิจได้',
+    points: ['ตอบคำถามที่พบบ่อยและข้อมูลสินค้า', 'ปรับการทำงานให้ตรงกับร้านได้', 'ส่งต่อเมื่อเกินขอบเขต'],
   },
   {
-    icon: '💳',
-    title: 'จัดการชำระเงินและออเดอร์',
-    desc: 'ปิดยอดขาย รับชำระเงิน และจัดการออเดอร์อัตโนมัติ ไม่พลาดทุกคำสั่งซื้อ',
-    tags: ['ปิดการขาย', 'อัตโนมัติ'],
+    title: 'เก็บออเดอร์ จองคิว และลีด',
+    desc: 'ช่วยเปลี่ยนการคุยใน LINE ให้เป็น flow ที่ทำงานได้จริงมากขึ้น ไม่ใช่แค่ตอบกลับสวย ๆ',
+    points: ['รับออเดอร์หรือจองคิว', 'เก็บข้อมูลลูกค้าเบื้องต้น', 'สรุปงานให้แอดมินต่อได้ง่าย'],
   },
   {
-    icon: '📦',
-    title: 'จัดการสต็อกสินค้า',
-    desc: 'อัพเดทสต็อกอัตโนมัติ เชื่อม POS แจ้งเตือนสินค้าใกล้หมดแบบเรียลไทม์',
-    tags: ['POS', 'เรียลไทม์', 'แจ้งเตือน'],
-  },
-  {
-    icon: '📊',
-    title: 'แดชบอร์ดยอดขาย',
-    desc: 'ดูยอดขาย สถิติลูกค้า และออกรายงานได้ตลอดเวลา เพื่อช่วยตัดสินใจเร็วขึ้น',
-    tags: ['เรียลไทม์', 'วิเคราะห์', 'รายงาน'],
-  },
-  {
-    icon: '🛒',
-    title: 'รับออเดอร์ผ่านแชท',
-    desc: 'รับออเดอร์ผ่านแชท ยืนยันอัตโนมัติ และส่งต่อทีมจัดส่งได้ทันที',
-    tags: ['รับออเดอร์', 'ยืนยันทันที'],
-  },
-  {
-    icon: '👥',
-    title: 'จัดการฐานลูกค้า',
-    desc: 'เก็บข้อมูลลูกค้า แบ่งกลุ่ม และส่ง Broadcast โปรโมชั่นได้อย่างแม่นยำ',
-    tags: ['ฐานลูกค้า', 'แบ่งกลุ่ม', 'บรอดแคสต์'],
+    title: 'ทำให้ทีมเห็นภาพรวม',
+    desc: 'ช่วยให้ทีมตามงานต่อจากหน้าสรุปข้อมูลลูกค้าและสถานะล่าสุดได้ง่ายขึ้นเมื่อเคสต้องใช้คนดูแล',
+    points: ['จัดกลุ่มลูกค้าและข้อมูลสำคัญ', 'ดูสถานะการคุยและการส่งต่อ', 'ขยายขั้นตอนการทำงานได้ภายหลัง'],
   },
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 max-w-6xl mx-auto px-4">
-      <div className="text-center mb-14">
-        <div className="inline-block bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-sm font-bold px-4 py-1.5 rounded-full mb-4">
-          🐱 ฟีเจอร์
+    <section id="features" className="py-28 max-w-6xl mx-auto px-4">
+      <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start mb-16">
+        <div>
+          <div className="eyebrow mb-4">ความสามารถหลัก</div>
+          <h2 className="text-3xl md:text-5xl font-black mb-5 leading-tight text-white">
+            ไม่ใช่แค่บอทตอบแชท
+            <span className="block text-white/56">แต่เป็นโครงงานขายและบริการบน LINE ที่ทีมใช้ต่อได้</span>
+          </h2>
+          <p className="text-white/60 text-lg leading-8 max-w-xl">
+            MeowChat ช่วยให้ร้านคุณตอบลูกค้าเร็วขึ้น เก็บงานต่อได้เป็นระบบ และให้ทีมรับช่วงต่อได้โดยไม่ต้องเริ่มคุยใหม่
+          </p>
         </div>
-        <h2 className="text-3xl md:text-4xl font-black mb-3">ทำได้ทุกอย่าง</h2>
-        <p className="text-white/50 text-lg">ไม่ใช่แค่แชทบอท คือพนักงานอัจฉริยะ 24 ชั่วโมง</p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {FEATURES.map((f) => (
-          <div
-            key={f.title}
-            className="bg-brand-card rounded-2xl p-6 border border-white/5 hover:border-brand-orange/20 transition-colors card-glow"
-          >
-            <div className="text-3xl mb-4">{f.icon}</div>
-            <h3 className="font-bold text-lg mb-2">{f.title}</h3>
-            <p className="text-white/50 text-sm mb-4 leading-relaxed">{f.desc}</p>
-            <div className="flex flex-wrap gap-2">
-              {f.tags.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs bg-brand-orange/10 text-brand-orange font-semibold px-2 py-1 rounded-lg"
-                >
-                  {t}
-                </span>
-              ))}
+        <div className="rounded-[30px] border border-white/8 bg-white/[0.04] p-6 md:p-8 card-glow">
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="rounded-2xl border border-white/8 bg-[#111827]/55 p-5">
+              <div className="text-xs uppercase tracking-[0.16em] text-white/32 mb-2">ฝั่งลูกค้า</div>
+              <div className="text-2xl font-semibold mb-2 text-white">ตอบเร็วขึ้น</div>
+              <p className="text-sm text-white/54 leading-6">ลูกค้าเห็นการตอบกลับที่สม่ำเสมอ และไม่หลุดเพราะร้านตอบช้า</p>
+            </div>
+            <div className="rounded-2xl border border-white/8 bg-[#111827]/55 p-5">
+              <div className="text-xs uppercase tracking-[0.16em] text-white/32 mb-2">ฝั่งทีมงาน</div>
+              <div className="text-2xl font-semibold mb-2 text-white">ส่งต่อง่ายขึ้น</div>
+              <p className="text-sm text-white/54 leading-6">เมื่อเคสซับซ้อน ทีมยังรับช่วงต่อจากข้อมูลเดิมได้ ไม่ต้องเริ่มใหม่</p>
+            </div>
+            <div className="rounded-2xl border border-white/8 bg-[#111827]/55 p-5">
+              <div className="text-xs uppercase tracking-[0.16em] text-white/32 mb-2">ฝั่งการเติบโต</div>
+              <div className="text-2xl font-semibold mb-2 text-white">ขยายต่อได้</div>
+              <p className="text-sm text-white/54 leading-6">เริ่มจากงานหลักของร้านก่อน แล้วค่อยขยายไปยังออเดอร์ การจอง และการติดตามลูกค้า</p>
             </div>
           </div>
-        ))}
+        </div>
+      </div>
+
+      <div className="relative">
+        {/* Mascot floats above center card on desktop */}
+        <div className="hidden lg:flex absolute -top-10 left-1/2 -translate-x-1/2 flex-col items-center z-10 pointer-events-none">
+          <div className="text-4xl mascot-peek">🐱</div>
+          <div className="w-px h-6 bg-gradient-to-b from-brand-mascot/40 to-transparent" />
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-6">
+          {FEATURE_PILLARS.map((item, index) => (
+            <div
+              key={item.title}
+              className={`rounded-[28px] border bg-white/[0.04] p-6 md:p-7 card-glow transition-colors ${
+                index === 1
+                  ? 'border-brand-mascot/30 bg-brand-mascot/[0.04]'
+                  : 'border-white/8'
+              }`}
+            >
+              <div className="text-xs uppercase tracking-[0.16em] text-brand-peach mb-3">จุดเด่นของระบบ</div>
+              <h3 className="text-2xl font-semibold mb-3 leading-tight text-white">{item.title}</h3>
+              <p className="text-white/58 text-sm leading-7 mb-7">{item.desc}</p>
+              <div className="space-y-3">
+                {item.points.map((point) => (
+                  <div key={point} className="flex items-start gap-3 text-sm text-white/70 leading-6">
+                    <span className="mt-1 text-brand-peach">✦</span>
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -6,19 +6,119 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Noto Sans Thai', system-ui, sans-serif;
+    background:
+      radial-gradient(circle at top, rgba(255, 170, 198, 0.18), transparent 26%),
+      radial-gradient(circle at 85% 18%, rgba(255, 214, 179, 0.10), transparent 20%),
+      linear-gradient(180deg, #0f1524 0%, #141b2d 42%, #101726 100%);
+    color: #f8f7fb;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.03em;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #FF6B35 0%, #ff9a6c 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ffe4ef 48%, #ffabc9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .card-glow {
-    box-shadow: 0 0 30px rgba(255, 107, 53, 0.08);
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #ffd8a8 0%, #ff9fc0 55%, #ff6b9a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
+
+  .card-glow {
+    box-shadow: 0 18px 40px rgba(7, 11, 24, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .card-glow-strong {
+    box-shadow: 0 28px 70px rgba(7, 11, 24, 0.30), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 24px 50px rgba(7, 11, 24, 0.22);
+    backdrop-filter: blur(14px);
+  }
+
+  .section-light {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .section-blush {
+    background: linear-gradient(180deg, rgba(255, 159, 192, 0.08), rgba(255, 255, 255, 0.02));
+  }
+
+  .section-shell {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 214, 179, 0.28);
+    background: rgba(255, 214, 179, 0.08);
+    color: #ffd8a8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.48rem 0.9rem;
+  }
+
+  /* ── MASCOT SYSTEM ─────────────────────────── */
+
+  .mascot-glow {
+    filter: drop-shadow(0 0 24px rgba(255, 140, 66, 0.35));
+  }
+
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #FFD6A8 0%, #FF8C42 60%, #FF6B9A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mascot-float {
+    animation: mascot-float 3.5s ease-in-out infinite;
+  }
+
+  .mascot-peek {
+    animation: mascot-peek 0.6s ease-out forwards;
+  }
+
+  .mascot-bob {
+    animation: mascot-bob 2.8s ease-in-out infinite;
+  }
+}
+
+/* Mascot keyframes — declared at top level for cross-browser @layer compatibility */
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes mascot-peek {
+  0%   { transform: translateX(20px) rotate(8deg); opacity: 0; }
+  100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+}
+
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
