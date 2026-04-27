@@ -122,15 +122,20 @@ export default function Pricing() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
           {PLANS.map((plan) => (
-            <div
-              key={plan.name}
-              className={`relative rounded-[30px] p-6 md:p-7 border flex flex-col ${plan.popular ? 'bg-white text-slate-950 border-white card-glow-strong scale-[1.01]' : 'border-white/8 bg-white/[0.04] card-glow'}`}
-            >
+            <div key={plan.name}>
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-green text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-brand-green/20">
-                  เริ่มต้นง่ายที่สุด
+                <div className="flex justify-center mb-2">
+                  <div className="mascot-float text-5xl">🐱</div>
                 </div>
               )}
+              <div
+                className={`relative rounded-[30px] p-6 md:p-7 border flex flex-col ${plan.popular ? 'bg-white text-slate-950 border-brand-mascot/40 bg-brand-mascot/[0.06] card-glow-strong scale-[1.01]' : 'border-white/8 bg-white/[0.04] card-glow'}`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-mascot text-white text-xs font-black px-4 py-1.5 shadow-lg shadow-brand-mascot/30">
+                    เริ่มต้นง่ายที่สุด
+                  </div>
+                )}
 
               <div className="text-4xl mb-4">{plan.icon}</div>
               <div className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold mb-3 ${plan.popular ? 'bg-slate-100 text-slate-600' : 'border border-white/10 bg-white/[0.04] text-white/60'}`}>
@@ -189,6 +194,7 @@ export default function Pricing() {
               >
                 {plan.cta}
               </a>
+              </div>
             </div>
           ))}
         </div>
