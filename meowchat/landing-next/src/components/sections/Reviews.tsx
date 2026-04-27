@@ -4,15 +4,18 @@ import { SECONDARY_CTA_HREF, SECONDARY_CTA_LABEL } from '../../lib/site';
 const TESTIMONIALS = [
   {
     quote: 'เมื่อก่อนลูกค้าทักมานอกเวลาแล้วหลุดบ่อย ตอนนี้อย่างน้อยระบบช่วยรับคำถามและเก็บเรื่องไว้ให้ทีมตามต่อได้',
-    role: 'ร้านอาหาร / เดลิเวอรี',
+    role: 'เจ้าของร้านอาหาร, กรุงเทพฯ',
+    stars: 5,
   },
   {
     quote: 'จุดที่ชอบคือเวลาส่งต่อให้แอดมิน ทีมไม่ต้องเริ่มถามลูกค้าใหม่ทั้งหมด เพราะมีสรุปสิ่งที่คุยไว้แล้ว',
-    role: 'คลินิก / นัดหมาย',
+    role: 'เจ้าของคลินิก, เชียงใหม่',
+    stars: 5,
   },
   {
     quote: 'มันไม่ใช่แค่ตอบแชทไวขึ้น แต่ทำให้ร้านรู้ว่าต้องตามลูกค้าคนไหนต่อก่อนหลัง',
-    role: 'ร้านค้าออนไลน์ / ปิดการขาย',
+    role: 'ร้านค้าออนไลน์, นนทบุรี',
+    stars: 5,
   },
 ];
 
@@ -34,7 +37,7 @@ export default function Reviews() {
         <div className="rounded-[30px] border border-white/8 bg-white/[0.04] p-7 md:p-8 card-glow">
           <div className="text-sm font-bold text-brand-peach uppercase tracking-[0.16em] mb-4">มุมที่ช่วยปิดการตัดสินใจ</div>
           <div className="space-y-4 text-white/68 text-base md:text-lg leading-7 md:leading-8">
-            <p>ลูกค้าควรรู้สึกว่า “ร้านนี้ตอบไวขึ้น” โดยที่เจ้าของร้านยังรู้สึกว่า “ทีมเรายังคุมการขายและการบริการได้เหมือนเดิม”</p>
+            <p>ลูกค้าควรรู้สึกว่า "ร้านนี้ตอบไวขึ้น" โดยที่เจ้าของร้านยังรู้สึกว่า "ทีมเรายังคุมการขายและการบริการได้เหมือนเดิม"</p>
             <p>MeowChat จึงไม่ได้พยายามแทนคนทั้งหมด แต่ช่วยรับหน้าแรก จัดข้อมูล และทำให้ทีมรับต่อได้ง่ายขึ้นในจังหวะที่สำคัญ</p>
           </div>
           <a
@@ -46,14 +49,25 @@ export default function Reviews() {
           </a>
         </div>
 
-        <div className="grid gap-4">
-          {TESTIMONIALS.map((item, index) => (
-            <div key={index} className="rounded-[24px] border border-white/8 bg-[#111827]/55 p-6 md:p-7 card-glow">
-              <div className="text-brand-peach text-xl mb-3">“</div>
-              <p className="text-white/84 text-base md:text-lg leading-8 mb-4">{item.quote}</p>
-              <div className="text-sm md:text-base text-white/42">{item.role}</div>
-            </div>
-          ))}
+        <div className="relative">
+          <div className="grid gap-4">
+            {TESTIMONIALS.map((item, index) => (
+              <div key={index} className="rounded-[24px] border border-white/8 bg-[#111827]/55 p-6 md:p-7 card-glow">
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: item.stars }).map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-sm">★</span>
+                  ))}
+                </div>
+                <div className="text-brand-peach text-xl mb-3">"</div>
+                <p className="text-white/84 text-base md:text-lg leading-8 mb-4">{item.quote}</p>
+                <div className="text-sm md:text-base text-white/42">{item.role}</div>
+              </div>
+            ))}
+          </div>
+          {/* Mascot cozy pose - bottom right */}
+          <div className="hidden md:block absolute -bottom-8 -right-6 text-5xl mascot-bob pointer-events-none select-none">
+            😻
+          </div>
         </div>
       </div>
     </section>
