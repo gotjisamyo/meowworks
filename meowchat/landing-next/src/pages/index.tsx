@@ -5,6 +5,7 @@ import TrustStrip from '../components/sections/TrustStrip';
 import Features from '../components/sections/Features';
 import ProductShowcase from '../components/sections/ProductShowcase';
 import UseCases from '../components/sections/UseCases';
+import ComparisonTable from '../components/sections/ComparisonTable';
 import HowItWorks from '../components/sections/HowItWorks';
 import Pricing from '../components/sections/Pricing';
 import Reviews from '../components/sections/Reviews';
@@ -21,6 +22,7 @@ export default function Home() {
       <ProductShowcase />
       <Features />
       <UseCases />
+      <ComparisonTable />
       <HowItWorks />
       <Pricing />
       <Reviews />
