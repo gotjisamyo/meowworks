@@ -133,17 +133,11 @@ function SectionHeading({ eyebrow, title, description, invert = false }: { eyebr
 
 export default function HomePage() {
   const [activeUseCase, setActiveUseCase] = useState(useCases[0].id);
-  const [activeDemoCase, setActiveDemoCase] = useState(demoUseCases[0].id);
   const [activeDashboardView, setActiveDashboardView] = useState(dashboardViews[0].id);
 
   const selectedUseCase = useMemo(
     () => useCases.find((item) => item.id === activeUseCase) ?? useCases[0],
     [activeUseCase]
-  );
-
-  const selectedDemoCase = useMemo(
-    () => demoUseCases.find((item) => item.id === activeDemoCase) ?? demoUseCases[0],
-    [activeDemoCase]
   );
 
   const selectedDashboardView = useMemo(
@@ -261,85 +255,74 @@ export default function HomePage() {
         <div className={styles.container}>
           <div className={styles.demoLead}>
             <SectionHeading
-              eyebrow="USE CASE DEMO"
-              title="ลูกค้าทักเรื่องไหน MeowChat ช่วยร้านตอบและพาไปต่อได้บ้าง"
-              description="กดดูตัวอย่างงานที่ร้านใช้ได้จริงใน LINE OA แล้วดูว่าแต่ละเคส ระบบช่วยตอบอะไร เก็บอะไร และส่งต่อทีมตอนไหนค่ะ"
+              eyebrow="REAL DEMO VIDEO"
+              title="ดูวิดีโอตัวอย่างว่า MeowChat ช่วยร้านตอบอะไรได้บ้างบน LINE OA"
+              description="วิดีโอนี้สรุป flow หลักที่ร้านใช้ได้จริง เช่น ตอบราคา รับจองคิว เก็บข้อมูล และส่งต่อทีมเมื่อถึงจังหวะปิดการขายค่ะ"
             />
-
-            <div className={styles.tabRow} aria-label="ตัวอย่างงานที่ MeowChat ช่วยได้">
-              {demoUseCases.map((item) => {
-                const isActive = item.id === activeDemoCase;
-
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={isActive ? styles.activeTab : styles.tabButton}
-                    aria-pressed={isActive}
-                    onClick={() => setActiveDemoCase(item.id)}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
           <div className={styles.demoGrid}>
             <div className={styles.demoNarrative}>
               <div className={styles.demoHighlights}>
-                {selectedDemoCase.chips.map((item) => (
-                  <div key={item} className={styles.demoHighlightChip}>
-                    <span aria-hidden="true">•</span>
-                    <span>{item}</span>
-                  </div>
+                <div className={styles.demoHighlightChip}>
+                  <span aria-hidden="true">▶</span>
+                  <span>วิดีโอจริง กดเล่นได้</span>
+                </div>
+                <div className={styles.demoHighlightChip}>
+                  <span aria-hidden="true">✦</span>
+                  <span>สรุป use case หลักใน 12 วินาที</span>
+                </div>
+                <div className={styles.demoHighlightChip}>
+                  <span aria-hidden="true">✓</span>
+                  <span>เหมาะกับร้านที่อยากเห็นภาพก่อนคุยกับทีม</span>
+                </div>
+              </div>
+
+              <div className={styles.demoCaseList}>
+                {demoUseCases.map((item) => (
+                  <article key={item.id} className={styles.demoNarrativeCard}>
+                    <span className={styles.demoCaseEyebrow}>{item.eyebrow}</span>
+                    <h3>{item.label}</h3>
+                    <p>{item.handoffDetail}</p>
+                  </article>
                 ))}
               </div>
 
-              <article className={styles.demoNarrativeCard}>
-                <span className={styles.demoCaseEyebrow}>{selectedDemoCase.eyebrow}</span>
-                <h3>{selectedDemoCase.title}</h3>
-                <p>{selectedDemoCase.handoffDetail}</p>
-              </article>
-
               <div className={styles.demoOutcomeList}>
-                {selectedDemoCase.outcomes.map((item) => (
-                  <div key={item} className={styles.demoOutcomeItem}>
-                    <span aria-hidden="true">✓</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
+                <div className={styles.demoOutcomeItem}>
+                  <span aria-hidden="true">✓</span>
+                  <span>ช่วยให้คนเห็นทันทีว่า MeowChat ไม่ได้เป็นแค่ chatbot แต่เป็น flow ช่วยขายบน LINE OA</span>
+                </div>
+                <div className={styles.demoOutcomeItem}>
+                  <span aria-hidden="true">✓</span>
+                  <span>เริ่มจาก use case เดียวที่ร้านใช้จริงก่อน แล้วค่อยขยายเมื่อทีมพร้อม</span>
+                </div>
               </div>
             </div>
 
             <div className={styles.demoPlayerCard}>
               <div className={styles.demoPlayerTop}>
-                <span className={styles.demoPlayerLabel}>{selectedDemoCase.label}</span>
-                <span className={styles.demoPlayerLength}>ตัวอย่างการตอบจริง</span>
+                <span className={styles.demoPlayerLabel}>MeowChat Product Explainer</span>
+                <span className={styles.demoPlayerLength}>12 sec</span>
               </div>
 
-              <div className={styles.demoConversation}>
-                <div className={styles.demoConversationGlow} />
-
-                <div className={styles.demoMessageUser}>
-                  <span className={styles.demoMessageTag}>ลูกค้าถาม</span>
-                  <p className={styles.demoMessageBody}>{selectedDemoCase.customerMessage}</p>
-                </div>
-
-                <div className={styles.demoMessageBot}>
-                  <span className={styles.demoMessageTag}>MeowChat ตอบ</span>
-                  <p className={styles.demoMessageBody}>{selectedDemoCase.assistantMessage}</p>
-                </div>
-
-                <div className={styles.demoNextStepCard}>
-                  <span className={styles.demoNextStepLabel}>{selectedDemoCase.handoffTitle}</span>
-                  <strong>{selectedDemoCase.handoffDetail}</strong>
-                </div>
+              <div className={styles.demoVideoFrame}>
+                <video
+                  className={styles.demoVideo}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster="/media/meowchat-demo-poster.png"
+                  aria-label="วิดีโอตัวอย่างการทำงานของ MeowChat บน LINE OA"
+                >
+                  <source src="/media/meowchat-demo.mp4" type="video/mp4" />
+                  เบราว์เซอร์นี้ไม่รองรับวิดีโอ สามารถเปิดไฟล์โดยตรงได้ที่ /media/meowchat-demo.mp4
+                </video>
               </div>
 
               <div className={styles.demoSupportBox}>
-                <strong>เริ่มจาก use case เดียวที่ร้านใช้จริงก่อนก็ได้</strong>
-                <p>ไม่ต้องรื้อทั้งระบบตั้งแต่วันแรก เลือก flow ที่ลูกค้าทักบ่อยที่สุด แล้วค่อยขยายเมื่อร้านพร้อมค่ะ</p>
+                <strong>ถ้าร้านของพี่มี flow เฉพาะทาง แอนนาทำวิดีโอเวอร์ชันธุรกิจจริงต่อให้ได้อีก</strong>
+                <p>ตอนนี้ใส่วิดีโอตัวอย่างหลักเพื่อให้คนเห็นภาพก่อน จากนั้นค่อยแตกเวอร์ชันตามร้านอาหาร คลินิก หรือร้านค้าออนไลน์ได้ค่ะ</p>
                 <div className={styles.demoSupportActions}>
                   <a href={PRIMARY_CTA_HREF} className={styles.primaryButtonSmall}>{PRIMARY_CTA_LABEL}</a>
                   <a href="#pricing" className={styles.demoTextLink}>ดูแพ็กที่เหมาะกับร้าน</a>
