@@ -77,6 +77,13 @@ export type ProofStat = {
   note?: string;
 };
 
+export type DemoScene = {
+  time: string;
+  title: string;
+  description: string;
+  accent: string;
+};
+
 export const trustChips: TrustChip[] = [
   { icon: '⚡', label: 'ตอบไวแม้ช่วงร้านยุ่งหรือหลังเลิกงาน' },
   { icon: '🧾', label: 'รับออเดอร์ จองคิว เก็บ lead ได้ใน flow เดียว' },
@@ -94,6 +101,39 @@ export const proofStats: ProofStat[] = [
   { value: 'คัดเคสพร้อมซื้อ', label: 'ให้ทีมเข้าไปปิดต่อในจังหวะที่คุ้มกับเวลามากกว่า', note: 'เหมาะกับร้านที่อยากให้ทีมโฟกัสเคสที่มีโอกาสปิดการขายสูงกว่า' },
   { value: 'เริ่มจาก flow เดียว', label: 'ไม่ต้องรื้อทั้งระบบก่อนถึงจะเริ่มเห็นผล', note: 'เริ่มจากจุดที่ลูกค้าทักบ่อย แล้วค่อยขยายเมื่อร้านพร้อม' },
 ];
+
+export const demoScenes: DemoScene[] = [
+  {
+    time: '0–6s',
+    title: 'ลูกค้าทัก แต่ร้านตอบไม่ทัน',
+    description: 'เริ่มจาก pain จริงของร้านที่มีแชทเข้าเรื่อย ๆ แต่ทีมตอบไม่ทันในช่วงพีคหรือหลังเลิกงาน',
+    accent: 'Pain',
+  },
+  {
+    time: '6–14s',
+    title: 'MeowChat รับคำถามซ้ำแทนทีม',
+    description: 'โชว์ flow ที่ AI ตอบ FAQ ราคา เวลาเปิดปิด หรือคิวว่างอย่างเป็นธรรมชาติบน LINE OA',
+    accent: 'Reply',
+  },
+  {
+    time: '14–22s',
+    title: 'เก็บออเดอร์ จองคิว และคัดเคสพร้อมซื้อ',
+    description: 'ให้เห็นว่าบทสนทนาไม่จบแค่ตอบ แต่พาลูกค้าไปต่อจนพร้อมให้ทีมรับช่วงปิดการขาย',
+    accent: 'Convert',
+  },
+  {
+    time: '22–30s',
+    title: 'เจ้าของร้านเห็นภาพรวมในจอเดียว',
+    description: 'ปิดด้วย owner view ที่ทำให้รู้ว่าแชทไหนระบบช่วยได้ และช่วงไหนควรให้ทีมลงมือทันที',
+    accent: 'Owner View',
+  },
+];
+
+export const demoHighlights = [
+  'ดู workflow การตอบแชทใน 30 วินาที',
+  'เหมาะกับร้านอาหาร คลินิก และร้านค้าออนไลน์',
+  'เริ่มจาก 1 flow ก่อน แล้วค่อยขยายเมื่อร้านพร้อม',
+] as const;
 
 export const proofItems: ProofItem[] = [
   { icon: '🍜', name: 'ร้านข้าวแม่สมใจ', quote: 'ออเดอร์ไม่ตกแม้ลูกค้าทักดึก' },

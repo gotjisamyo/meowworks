@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './HomePage.module.css';
 import {
+  demoHighlights,
+  demoScenes,
   dashboardViews,
   faqs,
   heroProofPoints,
@@ -246,6 +248,79 @@ export default function HomePage() {
                 {item.note ? <span className={styles.proofStatNote}>{item.note}</span> : null}
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.demoSection}>
+        <div className={styles.container}>
+          <div className={styles.demoGrid}>
+            <div>
+              <SectionHeading
+                eyebrow="STORYBOARD PREVIEW"
+                title="ดูภาพรวมการทำงานของ MeowChat ก่อนคุยกับทีมได้ในไม่กี่วินาที"
+                description="ส่วนนี้เป็น storyboard preview ที่เล่า flow หลักตั้งแต่ลูกค้าทักเข้ามา จนถึงจังหวะที่ระบบคัดเคสพร้อมซื้อแล้วส่งต่อให้ทีมรับช่วงต่อค่ะ"
+              />
+
+              <div className={styles.demoHighlights}>
+                {demoHighlights.map((item) => (
+                  <div key={item} className={styles.demoHighlightChip}>
+                    <span aria-hidden="true">▶</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.demoTimeline}>
+                {demoScenes.map((scene) => (
+                  <article key={scene.time} className={styles.demoTimelineCard}>
+                    <div className={styles.demoTimelineMeta}>
+                      <span className={styles.demoTimelineTime}>{scene.time}</span>
+                      <span className={styles.demoTimelineAccent}>{scene.accent}</span>
+                    </div>
+                    <h3>{scene.title}</h3>
+                    <p>{scene.description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.demoPlayerCard}>
+              <div className={styles.demoPlayerTop}>
+                <span className={styles.demoPlayerLabel}>Storyboard Preview</span>
+                <span className={styles.demoPlayerLength}>4 scenes</span>
+              </div>
+
+              <div className={styles.demoPoster}>
+                <div className={styles.demoPosterGlow} />
+                <div className={styles.demoPreviewBadge} aria-hidden="true">
+                  <span className={styles.demoPlayIcon}>▶</span>
+                </div>
+
+                <div className={styles.demoPosterStack}>
+                  <article className={styles.demoPosterCardPrimary}>
+                    <span className={styles.demoPosterBadge}>Scene 01</span>
+                    <strong>ลูกค้าทักเข้ามาใน LINE OA</strong>
+                    <p>คำถามเรื่องราคา คิวว่าง สต็อก และโปรโมชันเข้ามาพร้อมกันในช่วงที่ร้านกำลังยุ่ง</p>
+                  </article>
+
+                  <article className={styles.demoPosterCardSecondary}>
+                    <span className={styles.demoPosterBadgeAlt}>Scene 02</span>
+                    <strong>MeowChat ตอบแล้วคัดเคสพร้อมซื้อให้ทีม</strong>
+                    <p>ตอบคำถามซ้ำ เก็บ lead และส่งต่อเฉพาะเคสที่ควรใช้คนจริงปิดการขายต่อ</p>
+                  </article>
+                </div>
+              </div>
+
+              <div className={styles.demoSupportBox}>
+                <strong>พร้อมเอา storyboard นี้ไปทำวิดีโอต่อได้เลย</strong>
+                <p>ถ้าพร้อมผลิต asset ต่อ เราจะใช้โครงนี้ทำ hero video, ad cutdown และ sales demo เวอร์ชันจริงได้ทันที</p>
+                <div className={styles.demoSupportActions}>
+                  <a href={PRIMARY_CTA_HREF} className={styles.primaryButtonSmall}>{PRIMARY_CTA_LABEL}</a>
+                  <a href="#pricing" className={styles.demoTextLink}>ดูแพ็กที่เหมาะกับร้าน</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

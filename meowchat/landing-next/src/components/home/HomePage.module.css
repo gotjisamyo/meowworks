@@ -580,6 +580,222 @@
   line-height: 1.55;
 }
 
+.demoSection {
+  padding: 2rem 0 1.25rem;
+  background: linear-gradient(180deg, rgba(246, 249, 252, 0), rgba(240, 247, 242, 0.76));
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.demoHighlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+}
+
+.demoHighlightChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(209, 250, 229, 0.95);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+  color: var(--navy);
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+
+.demoHighlightChip span:first-child {
+  color: var(--green);
+}
+
+.demoTimeline {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.demoTimelineCard {
+  padding: 1.15rem 1.15rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.05);
+}
+
+.demoTimelineMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.demoTimelineTime,
+.demoTimelineAccent,
+.demoPlayerLabel,
+.demoPlayerLength,
+.demoPosterBadge,
+.demoPosterBadgeAlt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.demoTimelineTime {
+  color: var(--green-strong);
+}
+
+.demoTimelineAccent {
+  color: #7c8ba1;
+}
+
+.demoTimelineCard h3 {
+  margin: 0 0 0.4rem;
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+
+.demoTimelineCard p {
+  margin: 0;
+  color: #526173;
+  line-height: 1.7;
+}
+
+.demoPlayerCard {
+  padding: 1.25rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff, #f6fbf7);
+  border: 1px solid rgba(220, 237, 228, 0.95);
+  box-shadow: 0 24px 44px rgba(15, 23, 42, 0.08);
+}
+
+.demoPlayerTop,
+.demoSupportActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.demoPlayerLabel {
+  color: var(--navy);
+}
+
+.demoPlayerLength {
+  color: var(--slate-soft);
+}
+
+.demoPoster {
+  position: relative;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 420px;
+  background: linear-gradient(160deg, #0f172a 0%, #15243a 56%, #16331f 100%);
+}
+
+.demoPosterGlow {
+  position: absolute;
+  inset: auto auto -70px -30px;
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(22, 163, 74, 0.32), rgba(22, 163, 74, 0));
+  pointer-events: none;
+}
+
+.demoPreviewBadge {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.demoPlayIcon {
+  color: #fff;
+  font-size: 1.15rem;
+  transform: translateX(2px);
+}
+
+.demoPosterStack {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+  padding-top: 5.2rem;
+}
+
+.demoPosterCardPrimary,
+.demoPosterCardSecondary {
+  max-width: 320px;
+  padding: 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.18);
+}
+
+.demoPosterCardSecondary {
+  margin-left: auto;
+  background: rgba(236, 253, 245, 0.96);
+}
+
+.demoPosterBadge {
+  display: inline-flex;
+  margin-bottom: 0.7rem;
+  color: var(--green-strong);
+}
+
+.demoPosterBadgeAlt {
+  display: inline-flex;
+  margin-bottom: 0.7rem;
+  color: #0f766e;
+}
+
+.demoPosterCardPrimary strong,
+.demoPosterCardSecondary strong,
+.demoSupportBox strong {
+  display: block;
+  color: var(--navy);
+  line-height: 1.45;
+}
+
+.demoPosterCardPrimary p,
+.demoPosterCardSecondary p,
+.demoSupportBox p,
+.demoTextLink {
+  margin: 0.45rem 0 0;
+  color: #4e5f73;
+  line-height: 1.68;
+}
+
+.demoSupportBox {
+  margin-top: 1rem;
+  padding: 1rem 0.2rem 0;
+}
+
+.demoTextLink {
+  font-weight: 600;
+  color: var(--green-strong);
+}
+
 .lightSection,
 .mutedSection,
 .darkSection,
@@ -1117,6 +1333,7 @@
   .twoColumnFeature,
   .useCasePanel,
   .dashboardDetailRow,
+  .demoGrid,
   .pricingGrid,
   .stepGrid,
   .faqList,
@@ -1191,7 +1408,11 @@
   .proofStatNote,
   .planNote,
   .testimonialAuthor span,
-  .ctaMicrocopy {
+  .ctaMicrocopy,
+  .demoTimelineTime,
+  .demoTimelineAccent,
+  .demoPlayerLabel,
+  .demoPlayerLength {
     font-size: 0.88rem;
   }
 
@@ -1212,7 +1433,8 @@
 
   .heroActions,
   .ctaActions,
-  .dashboardTabs {
+  .dashboardTabs,
+  .demoSupportActions {
     flex-direction: column;
     align-items: stretch;
   }
@@ -1243,7 +1465,9 @@
   .pricingCard,
   .pricingCardHighlight,
   .faqCard,
-  .stepCard {
+  .stepCard,
+  .demoPlayerCard,
+  .demoTimelineCard {
     padding: 1.2rem;
   }
 
@@ -1254,6 +1478,20 @@
 
   .planPrice {
     font-size: 1.8rem;
+  }
+
+  .demoPoster {
+    min-height: 360px;
+    padding: 1rem;
+  }
+
+  .demoPosterStack {
+    padding-top: 4.5rem;
+  }
+
+  .demoPosterCardPrimary,
+  .demoPosterCardSecondary {
+    max-width: 100%;
   }
 
   .planDescription,
