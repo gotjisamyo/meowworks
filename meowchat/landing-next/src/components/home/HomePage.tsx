@@ -176,18 +176,18 @@ export default function HomePage() {
             <div>
               <p className={styles.heroBadge}>ผู้ช่วยขายบน LINE OA สำหรับธุรกิจไทย</p>
               <h1 className={styles.heroTitle}>
-                เปลี่ยน LINE OA ของร้านคุณ
+                ให้ LINE OA ของร้าน
                 <br />
-                ให้ <span>ตอบไวขึ้น</span> และคัดลูกค้าพร้อมซื้อให้ทีม
+                <span>ตอบไวขึ้น</span> และคัดลูกค้าพร้อมซื้อ
                 <br />
-                โดยไม่ต้องรีบเพิ่มแอดมิน
+                โดยยังไม่ต้องเพิ่มแอดมิน
               </h1>
               <p className={styles.heroDescription}>
-                {BRAND_TAGLINE} ที่ช่วยรับคำถามซ้ำ เก็บออเดอร์ จองคิว เก็บ lead
-                และส่งต่อเฉพาะเคสที่ควรใช้คนจริงปิดการขายต่อ เพื่อให้ทีมไม่จมกับแชทเดิม ๆ ค่ะ
+                {BRAND_TAGLINE} ที่ช่วยรับคำถามซ้ำ เก็บออเดอร์หรือจองคิว
+                แล้วส่งต่อเฉพาะเคสที่ควรใช้คนจริงปิดการขายต่อ เพื่อให้ทีมไม่จมกับแชทเดิม ๆ ค่ะ
               </p>
               <p className={styles.heroSubproof}>
-                เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก และอยากแก้จุดที่แชทตกหรือปิดการขายไม่ต่อเนื่องก่อนเป็นอย่างแรก
+                เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก และอยากเริ่มแก้จุดที่แชทตกก่อนเป็นอย่างแรก
               </p>
 
               <div className={styles.heroProofGrid}>
@@ -243,6 +243,7 @@ export default function HomePage() {
               <article key={item.value} className={styles.proofStatCard}>
                 <strong>{item.value}</strong>
                 <p>{item.label}</p>
+                {item.note ? <span className={styles.proofStatNote}>{item.note}</span> : null}
               </article>
             ))}
           </div>

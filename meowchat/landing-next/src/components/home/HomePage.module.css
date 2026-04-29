@@ -242,8 +242,8 @@
 
 .heroDescription {
   max-width: 620px;
-  font-size: 1.08rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.82;
   margin: 1.4rem 0 0;
 }
 
@@ -251,9 +251,9 @@
   max-width: 620px;
   margin: 0.85rem 0 0;
   color: var(--navy);
-  font-size: 0.98rem;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.7;
+  line-height: 1.72;
 }
 
 .heroProofGrid {
@@ -282,8 +282,8 @@
 .heroProofCard span {
   display: block;
   margin-top: 0.35rem;
-  color: var(--slate-soft);
-  font-size: 0.88rem;
+  color: #526173;
+  font-size: 0.92rem;
   line-height: 1.6;
 }
 
@@ -303,6 +303,7 @@
   background: rgba(220, 252, 231, 0.55);
   color: var(--navy);
   font-weight: 600;
+  line-height: 1.45;
 }
 
 .chatWrap {
@@ -567,8 +568,16 @@
 
 .proofStatCard p {
   margin: 0.45rem 0 0;
-  color: var(--slate-soft);
+  color: #526173;
   line-height: 1.65;
+}
+
+.proofStatNote {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--slate-soft);
+  font-size: 0.84rem;
+  line-height: 1.55;
 }
 
 .lightSection,
@@ -614,8 +623,8 @@
 .sectionDescription,
 .sectionDescriptionInvert {
   margin-top: 0.9rem;
-  line-height: 1.8;
-  font-size: 1rem;
+  line-height: 1.82;
+  font-size: 1.04rem;
 }
 
 .sectionDescriptionInvert {
@@ -862,7 +871,9 @@
 
 .testimonialQuote {
   margin: 1rem 0 1.2rem;
-  color: var(--slate-soft);
+  color: #475569;
+  font-size: 0.98rem;
+  line-height: 1.72;
 }
 
 .testimonialResult {
@@ -941,13 +952,15 @@
 .planDescription {
   margin: 0.8rem 0 1rem;
   min-height: 0;
+  font-size: 0.96rem;
+  line-height: 1.68;
 }
 
 .planAudience {
   margin: 0;
   color: var(--navy);
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .planOutcome {
@@ -958,17 +971,26 @@
   border: 1px solid var(--mist);
   color: var(--slate);
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-size: 0.95rem;
 }
 
 .planFeatureList {
   min-height: 170px;
+  margin: 0.95rem 0 0;
+  padding-left: 1.15rem;
+  color: #475569;
+  line-height: 1.68;
+}
+
+.planFeatureList li + li {
+  margin-top: 0.45rem;
 }
 
 .planNote {
   margin: 0.9rem 0 0;
-  color: var(--slate-soft);
-  font-size: 0.9rem;
+  color: #526173;
+  font-size: 0.92rem;
   line-height: 1.6;
 }
 
@@ -1152,7 +1174,25 @@
   }
 
   .heroTitle {
-    font-size: clamp(2.25rem, 10vw, 3.4rem);
+    font-size: clamp(2.1rem, 9.6vw, 3.15rem);
+    line-height: 1.08;
+  }
+
+  .heroDescription,
+  .sectionDescription,
+  .sectionDescriptionInvert,
+  .planDescription,
+  .testimonialQuote,
+  .faqCard p {
+    font-size: 0.98rem;
+    line-height: 1.72;
+  }
+
+  .proofStatNote,
+  .planNote,
+  .testimonialAuthor span,
+  .ctaMicrocopy {
+    font-size: 0.88rem;
   }
 
   .footerMeta {
@@ -1194,6 +1234,26 @@
 
   .proofTrack {
     gap: 1.5rem;
+  }
+
+  .heroProofCard,
+  .problemCard,
+  .solutionCard,
+  .testimonialCard,
+  .pricingCard,
+  .pricingCardHighlight,
+  .faqCard,
+  .stepCard {
+    padding: 1.2rem;
+  }
+
+  .planBadge {
+    position: static;
+    margin-bottom: 0.7rem;
+  }
+
+  .planPrice {
+    font-size: 1.8rem;
   }
 
   .planDescription,
