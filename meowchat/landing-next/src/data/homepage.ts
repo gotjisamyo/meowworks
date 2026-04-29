@@ -55,6 +55,7 @@ export type Testimonial = {
 export type PricingPlan = {
   name: string;
   price: string;
+  fitLabel: string;
   description: string;
   audience: string;
   outcome: string;
@@ -70,6 +71,11 @@ export type FaqItem = {
   answer: string;
 };
 
+export type ProofStat = {
+  value: string;
+  label: string;
+};
+
 export const trustChips: TrustChip[] = [
   { icon: '⚡', label: 'ตอบไวแม้ช่วงร้านยุ่งหรือหลังเลิกงาน' },
   { icon: '🧾', label: 'รับออเดอร์ จองคิว เก็บ lead ได้ใน flow เดียว' },
@@ -77,9 +83,15 @@ export const trustChips: TrustChip[] = [
 ];
 
 export const heroProofPoints: HeroProofPoint[] = [
-  { value: 'เริ่มจาก 1 use case', label: 'ไม่ต้องวางระบบทั้งร้านก่อนก็เริ่มได้' },
-  { value: 'ไม่ต้องมีทีมเทคนิค', label: 'ทีมช่วยวางคำตอบและ flow ตั้งต้นให้' },
-  { value: 'คุยผ่าน LINE ได้', label: 'เหมาะกับร้านที่อยากเริ่มแบบเข้าใจง่าย' },
+  { value: 'เริ่มจากจุดที่แชทหลุด', label: 'คัด flow ที่ร้านเสียโอกาสบ่อยสุดมาทำก่อน' },
+  { value: 'ไม่ต้องเพิ่มแอดมินทันที', label: 'ให้ระบบช่วยรับคำถามซ้ำและคัดเคสพร้อมซื้อ' },
+  { value: 'คุยกับทีมก่อนเริ่มได้', label: 'เหมาะกับร้านที่อยากมั่นใจก่อนเชื่อม LINE OA' },
+];
+
+export const proofStats: ProofStat[] = [
+  { value: 'ตอบซ้ำแทนทีมได้', label: 'ลดภาระแอดมินจากคำถามเดิม ๆ ที่เข้ามาทุกวัน' },
+  { value: 'คัดเคสพร้อมซื้อ', label: 'ให้ทีมเข้าไปปิดต่อในจังหวะที่คุ้มกับเวลามากกว่า' },
+  { value: 'เริ่มจาก flow เดียว', label: 'ไม่ต้องรื้อทั้งระบบก่อนถึงจะเริ่มเห็นผล' },
 ];
 
 export const proofItems: ProofItem[] = [
@@ -189,6 +201,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     name: 'Starter',
     price: '฿490/เดือน',
+    fitLabel: 'เหมาะกับร้านเริ่มต้น',
     description: 'เริ่มจาก flow แรกที่ร้านคุณใช้บ่อยที่สุดก่อน',
     audience: 'เหมาะกับร้านที่อยากลดคำถามซ้ำและไม่อยากพลาดลูกค้าที่ทักเข้ามา',
     outcome: 'ตอบ FAQ พื้นฐานได้ไวขึ้น โดยยังไม่ต้องตั้งระบบซับซ้อน',
@@ -199,6 +212,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     name: 'Growth',
     price: '฿1,490/เดือน',
+    fitLabel: 'เหมาะกับร้านแชทเยอะ',
     description: 'แพ็กสำหรับร้านที่เริ่มมีแชทเข้าเยอะและอยากจัดการการขายให้เป็นระบบ',
     audience: 'เหมาะกับร้านที่มีหลายแอดมิน มี lead เข้าเรื่อย ๆ หรืออยากลดแชทตกช่วงพีค',
     outcome: 'ช่วยคัดเคสพร้อมซื้อ จองคิว/รับออเดอร์ลึกขึ้น และเห็นอินไซต์การคุยได้ชัดขึ้น',
@@ -211,6 +225,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     name: 'Business',
     price: 'คุยกับทีม',
+    fitLabel: 'เหมาะกับร้านหลายทีม',
     description: 'สำหรับร้านหรือทีมขายที่มี workflow เฉพาะและต้องการออกแบบให้ตรงหน้างานจริง',
     audience: 'เหมาะกับหลายสาขา หลายแอดมิน หรือธุรกิจที่ต้องการการส่งต่อหลายขั้น',
     outcome: 'จัด flow ตามธุรกิจจริง เพื่อให้ทีมทำงานต่อจาก LINE OA ได้ลื่นขึ้น',

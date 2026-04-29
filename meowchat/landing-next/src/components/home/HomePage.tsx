@@ -9,6 +9,7 @@ import {
   pricingTrustNotes,
   problems,
   proofItems,
+  proofStats,
   setupSteps,
   solutions,
   testimonials,
@@ -175,18 +176,18 @@ export default function HomePage() {
             <div>
               <p className={styles.heroBadge}>ผู้ช่วยขายบน LINE OA สำหรับธุรกิจไทย</p>
               <h1 className={styles.heroTitle}>
-                ช่วยร้านที่ขายผ่าน LINE OA
+                เปลี่ยน LINE OA ของร้านคุณ
                 <br />
-                ให้ <span>ตอบไวขึ้น</span> และปิดการขายง่ายขึ้น
+                ให้ <span>ตอบไวขึ้น</span> และคัดลูกค้าพร้อมซื้อให้ทีม
                 <br />
-                โดยไม่ต้องเพิ่มภาระทีม
+                โดยไม่ต้องรีบเพิ่มแอดมิน
               </h1>
               <p className={styles.heroDescription}>
-                {BRAND_TAGLINE} ที่ช่วยตอบคำถามซ้ำ ๆ รับออเดอร์ จองคิว เก็บ lead
-                และส่งต่อแอดมินเมื่อถึงจังหวะที่ควรใช้คนจริงปิดการขายต่อค่ะ
+                {BRAND_TAGLINE} ที่ช่วยรับคำถามซ้ำ เก็บออเดอร์ จองคิว เก็บ lead
+                และส่งต่อเฉพาะเคสที่ควรใช้คนจริงปิดการขายต่อ เพื่อให้ทีมไม่จมกับแชทเดิม ๆ ค่ะ
               </p>
               <p className={styles.heroSubproof}>
-                เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก และอยากเริ่มจาก flow ที่ช่วยหน้างานได้จริงก่อน
+                เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก และอยากแก้จุดที่แชทตกหรือปิดการขายไม่ต่อเนื่องก่อนเป็นอย่างแรก
               </p>
 
               <div className={styles.heroProofGrid}>
@@ -232,6 +233,19 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.proofStatsSection}>
+        <div className={styles.container}>
+          <div className={styles.proofStatsGrid}>
+            {proofStats.map((item) => (
+              <article key={item.value} className={styles.proofStatCard}>
+                <strong>{item.value}</strong>
+                <p>{item.label}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -427,6 +441,7 @@ export default function HomePage() {
               <article key={plan.name} className={plan.highlight ? styles.pricingCardHighlight : styles.pricingCard}>
                 {plan.badge ? <span className={styles.planBadge}>{plan.badge}</span> : null}
                 <h3>{plan.name}</h3>
+                <div className={styles.planFitLabel}>{plan.fitLabel}</div>
                 <div className={styles.planPrice}>{plan.price}</div>
                 <p className={styles.planDescription}>{plan.description}</p>
                 <p className={styles.planAudience}>{plan.audience}</p>

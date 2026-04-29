@@ -539,6 +539,38 @@
   color: var(--slate-soft);
 }
 
+.proofStatsSection {
+  padding: 1.2rem 0 0.6rem;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.78), rgba(255, 255, 255, 0));
+}
+
+.proofStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.proofStatCard {
+  padding: 1.15rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.05);
+}
+
+.proofStatCard strong {
+  display: block;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.proofStatCard p {
+  margin: 0.45rem 0 0;
+  color: var(--slate-soft);
+  line-height: 1.65;
+}
+
 .lightSection,
 .mutedSection,
 .darkSection,
@@ -893,6 +925,19 @@
   letter-spacing: -0.03em;
 }
 
+.planFitLabel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  margin: 0.55rem 0 0.7rem;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--navy);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .planDescription {
   margin: 0.8rem 0 1rem;
   min-height: 0;
@@ -1060,6 +1105,7 @@
   .metricGrid,
   .testimonialGrid,
   .listColumns,
+  .proofStatsGrid,
   .heroProofGrid,
   .pricingTrustBar,
   .ctaCard {
