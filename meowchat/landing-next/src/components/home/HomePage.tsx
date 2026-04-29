@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './HomePage.module.css';
 import {
-  demoHighlights,
-  demoScenes,
   dashboardViews,
+  demoUseCases,
   faqs,
   heroProofPoints,
   pricingPlans,
@@ -134,11 +133,17 @@ function SectionHeading({ eyebrow, title, description, invert = false }: { eyebr
 
 export default function HomePage() {
   const [activeUseCase, setActiveUseCase] = useState(useCases[0].id);
+  const [activeDemoCase, setActiveDemoCase] = useState(demoUseCases[0].id);
   const [activeDashboardView, setActiveDashboardView] = useState(dashboardViews[0].id);
 
   const selectedUseCase = useMemo(
     () => useCases.find((item) => item.id === activeUseCase) ?? useCases[0],
     [activeUseCase]
+  );
+
+  const selectedDemoCase = useMemo(
+    () => demoUseCases.find((item) => item.id === activeDemoCase) ?? demoUseCases[0],
+    [activeDemoCase]
   );
 
   const selectedDashboardView = useMemo(
@@ -254,67 +259,87 @@ export default function HomePage() {
 
       <section className={styles.demoSection}>
         <div className={styles.container}>
-          <div className={styles.demoGrid}>
-            <div>
-              <SectionHeading
-                eyebrow="STORYBOARD PREVIEW"
-                title="ดูภาพรวมการทำงานของ MeowChat ก่อนคุยกับทีมได้ในไม่กี่วินาที"
-                description="ส่วนนี้เป็น storyboard preview ที่เล่า flow หลักตั้งแต่ลูกค้าทักเข้ามา จนถึงจังหวะที่ระบบคัดเคสพร้อมซื้อแล้วส่งต่อให้ทีมรับช่วงต่อค่ะ"
-              />
+          <div className={styles.demoLead}>
+            <SectionHeading
+              eyebrow="USE CASE DEMO"
+              title="ลูกค้าทักเรื่องไหน MeowChat ช่วยร้านตอบและพาไปต่อได้บ้าง"
+              description="กดดูตัวอย่างงานที่ร้านใช้ได้จริงใน LINE OA แล้วดูว่าแต่ละเคส ระบบช่วยตอบอะไร เก็บอะไร และส่งต่อทีมตอนไหนค่ะ"
+            />
 
+            <div className={styles.tabRow} aria-label="ตัวอย่างงานที่ MeowChat ช่วยได้">
+              {demoUseCases.map((item) => {
+                const isActive = item.id === activeDemoCase;
+
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={isActive ? styles.activeTab : styles.tabButton}
+                    aria-pressed={isActive}
+                    onClick={() => setActiveDemoCase(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className={styles.demoGrid}>
+            <div className={styles.demoNarrative}>
               <div className={styles.demoHighlights}>
-                {demoHighlights.map((item) => (
+                {selectedDemoCase.chips.map((item) => (
                   <div key={item} className={styles.demoHighlightChip}>
-                    <span aria-hidden="true">▶</span>
+                    <span aria-hidden="true">•</span>
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div className={styles.demoTimeline}>
-                {demoScenes.map((scene) => (
-                  <article key={scene.time} className={styles.demoTimelineCard}>
-                    <div className={styles.demoTimelineMeta}>
-                      <span className={styles.demoTimelineTime}>{scene.time}</span>
-                      <span className={styles.demoTimelineAccent}>{scene.accent}</span>
-                    </div>
-                    <h3>{scene.title}</h3>
-                    <p>{scene.description}</p>
-                  </article>
+              <article className={styles.demoNarrativeCard}>
+                <span className={styles.demoCaseEyebrow}>{selectedDemoCase.eyebrow}</span>
+                <h3>{selectedDemoCase.title}</h3>
+                <p>{selectedDemoCase.handoffDetail}</p>
+              </article>
+
+              <div className={styles.demoOutcomeList}>
+                {selectedDemoCase.outcomes.map((item) => (
+                  <div key={item} className={styles.demoOutcomeItem}>
+                    <span aria-hidden="true">✓</span>
+                    <span>{item}</span>
+                  </div>
                 ))}
               </div>
             </div>
 
             <div className={styles.demoPlayerCard}>
               <div className={styles.demoPlayerTop}>
-                <span className={styles.demoPlayerLabel}>Storyboard Preview</span>
-                <span className={styles.demoPlayerLength}>4 scenes</span>
+                <span className={styles.demoPlayerLabel}>{selectedDemoCase.label}</span>
+                <span className={styles.demoPlayerLength}>ตัวอย่างการตอบจริง</span>
               </div>
 
-              <div className={styles.demoPoster}>
-                <div className={styles.demoPosterGlow} />
-                <div className={styles.demoPreviewBadge} aria-hidden="true">
-                  <span className={styles.demoPlayIcon}>▶</span>
+              <div className={styles.demoConversation}>
+                <div className={styles.demoConversationGlow} />
+
+                <div className={styles.demoMessageUser}>
+                  <span className={styles.demoMessageTag}>ลูกค้าถาม</span>
+                  <p className={styles.demoMessageBody}>{selectedDemoCase.customerMessage}</p>
                 </div>
 
-                <div className={styles.demoPosterStack}>
-                  <article className={styles.demoPosterCardPrimary}>
-                    <span className={styles.demoPosterBadge}>Scene 01</span>
-                    <strong>ลูกค้าทักเข้ามาใน LINE OA</strong>
-                    <p>คำถามเรื่องราคา คิวว่าง สต็อก และโปรโมชันเข้ามาพร้อมกันในช่วงที่ร้านกำลังยุ่ง</p>
-                  </article>
+                <div className={styles.demoMessageBot}>
+                  <span className={styles.demoMessageTag}>MeowChat ตอบ</span>
+                  <p className={styles.demoMessageBody}>{selectedDemoCase.assistantMessage}</p>
+                </div>
 
-                  <article className={styles.demoPosterCardSecondary}>
-                    <span className={styles.demoPosterBadgeAlt}>Scene 02</span>
-                    <strong>MeowChat ตอบแล้วคัดเคสพร้อมซื้อให้ทีม</strong>
-                    <p>ตอบคำถามซ้ำ เก็บ lead และส่งต่อเฉพาะเคสที่ควรใช้คนจริงปิดการขายต่อ</p>
-                  </article>
+                <div className={styles.demoNextStepCard}>
+                  <span className={styles.demoNextStepLabel}>{selectedDemoCase.handoffTitle}</span>
+                  <strong>{selectedDemoCase.handoffDetail}</strong>
                 </div>
               </div>
 
               <div className={styles.demoSupportBox}>
-                <strong>พร้อมเอา storyboard นี้ไปทำวิดีโอต่อได้เลย</strong>
-                <p>ถ้าพร้อมผลิต asset ต่อ เราจะใช้โครงนี้ทำ hero video, ad cutdown และ sales demo เวอร์ชันจริงได้ทันที</p>
+                <strong>เริ่มจาก use case เดียวที่ร้านใช้จริงก่อนก็ได้</strong>
+                <p>ไม่ต้องรื้อทั้งระบบตั้งแต่วันแรก เลือก flow ที่ลูกค้าทักบ่อยที่สุด แล้วค่อยขยายเมื่อร้านพร้อมค่ะ</p>
                 <div className={styles.demoSupportActions}>
                   <a href={PRIMARY_CTA_HREF} className={styles.primaryButtonSmall}>{PRIMARY_CTA_LABEL}</a>
                   <a href="#pricing" className={styles.demoTextLink}>ดูแพ็กที่เหมาะกับร้าน</a>

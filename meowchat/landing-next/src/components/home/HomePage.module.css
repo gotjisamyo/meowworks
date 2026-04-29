@@ -585,18 +585,27 @@
   background: linear-gradient(180deg, rgba(246, 249, 252, 0), rgba(240, 247, 242, 0.76));
 }
 
+.demoLead {
+  margin-bottom: 1.5rem;
+}
+
 .demoGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
   gap: 1.5rem;
   align-items: start;
+}
+
+.demoNarrative,
+.demoPlayerCard {
+  height: 100%;
 }
 
 .demoHighlights {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.1rem;
 }
 
 .demoHighlightChip {
@@ -617,57 +626,65 @@
   color: var(--green);
 }
 
-.demoTimeline {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.demoTimelineCard {
-  padding: 1.15rem 1.15rem 1.1rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.94);
+.demoNarrativeCard {
+  padding: 1.2rem 1.2rem 1.15rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(226, 232, 240, 0.92);
-  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.05);
 }
 
-.demoTimelineMeta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.55rem;
-}
-
-.demoTimelineTime,
-.demoTimelineAccent,
+.demoCaseEyebrow,
 .demoPlayerLabel,
 .demoPlayerLength,
-.demoPosterBadge,
-.demoPosterBadgeAlt {
+.demoMessageTag,
+.demoNextStepLabel {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.demoTimelineTime {
+.demoCaseEyebrow,
+.demoNextStepLabel {
   color: var(--green-strong);
 }
 
-.demoTimelineAccent {
-  color: #7c8ba1;
-}
-
-.demoTimelineCard h3 {
-  margin: 0 0 0.4rem;
+.demoNarrativeCard h3 {
+  margin: 0.55rem 0 0.5rem;
   color: var(--navy);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
-.demoTimelineCard p {
+.demoNarrativeCard p {
   margin: 0;
   color: #526173;
   line-height: 1.7;
+}
+
+.demoOutcomeList {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.demoOutcomeItem {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.04);
+  color: var(--slate);
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.demoOutcomeItem span:first-child {
+  color: var(--green-strong);
 }
 
 .demoPlayerCard {
@@ -694,17 +711,16 @@
   color: var(--slate-soft);
 }
 
-.demoPoster {
+.demoConversation {
   position: relative;
   margin-top: 1rem;
   padding: 1.25rem;
   border-radius: 24px;
   overflow: hidden;
-  min-height: 420px;
   background: linear-gradient(160deg, #0f172a 0%, #15243a 56%, #16331f 100%);
 }
 
-.demoPosterGlow {
+.demoConversationGlow {
   position: absolute;
   inset: auto auto -70px -30px;
   width: 240px;
@@ -714,76 +730,51 @@
   pointer-events: none;
 }
 
-.demoPreviewBadge {
-  position: absolute;
-  top: 1.15rem;
-  right: 1.15rem;
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-}
-
-.demoPlayIcon {
-  color: #fff;
-  font-size: 1.15rem;
-  transform: translateX(2px);
-}
-
-.demoPosterStack {
+.demoMessageUser,
+.demoMessageBot,
+.demoNextStepCard {
   position: relative;
   z-index: 1;
-  display: grid;
-  gap: 1rem;
-  padding-top: 5.2rem;
-}
-
-.demoPosterCardPrimary,
-.demoPosterCardSecondary {
-  max-width: 320px;
-  padding: 1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
   box-shadow: 0 16px 28px rgba(15, 23, 42, 0.18);
 }
 
-.demoPosterCardSecondary {
+.demoMessageUser {
   margin-left: auto;
-  background: rgba(236, 253, 245, 0.96);
+  max-width: 88%;
+  background: rgba(255, 255, 255, 0.96);
 }
 
-.demoPosterBadge {
-  display: inline-flex;
-  margin-bottom: 0.7rem;
-  color: var(--green-strong);
+.demoMessageBot {
+  margin-top: 0.95rem;
+  max-width: 100%;
+  background: rgba(236, 253, 245, 0.97);
 }
 
-.demoPosterBadgeAlt {
-  display: inline-flex;
-  margin-bottom: 0.7rem;
-  color: #0f766e;
+.demoNextStepCard {
+  margin-top: 0.95rem;
+  background: rgba(248, 250, 252, 0.94);
 }
 
-.demoPosterCardPrimary strong,
-.demoPosterCardSecondary strong,
-.demoSupportBox strong {
-  display: block;
-  color: var(--navy);
-  line-height: 1.45;
-}
-
-.demoPosterCardPrimary p,
-.demoPosterCardSecondary p,
+.demoMessageBody,
+.demoNextStepCard strong,
 .demoSupportBox p,
 .demoTextLink {
   margin: 0.45rem 0 0;
   color: #4e5f73;
   line-height: 1.68;
+}
+
+.demoMessageBody {
+  color: var(--navy);
+}
+
+.demoNextStepCard strong,
+.demoSupportBox strong {
+  display: block;
+  color: var(--navy);
+  line-height: 1.45;
 }
 
 .demoSupportBox {
@@ -1409,10 +1400,11 @@
   .planNote,
   .testimonialAuthor span,
   .ctaMicrocopy,
-  .demoTimelineTime,
-  .demoTimelineAccent,
+  .demoCaseEyebrow,
   .demoPlayerLabel,
-  .demoPlayerLength {
+  .demoPlayerLength,
+  .demoMessageTag,
+  .demoNextStepLabel {
     font-size: 0.88rem;
   }
 
@@ -1467,7 +1459,8 @@
   .faqCard,
   .stepCard,
   .demoPlayerCard,
-  .demoTimelineCard {
+  .demoNarrativeCard,
+  .demoOutcomeItem {
     padding: 1.2rem;
   }
 
@@ -1480,17 +1473,13 @@
     font-size: 1.8rem;
   }
 
-  .demoPoster {
-    min-height: 360px;
+  .demoConversation {
     padding: 1rem;
   }
 
-  .demoPosterStack {
-    padding-top: 4.5rem;
-  }
-
-  .demoPosterCardPrimary,
-  .demoPosterCardSecondary {
+  .demoMessageUser,
+  .demoMessageBot,
+  .demoNextStepCard {
     max-width: 100%;
   }
 
