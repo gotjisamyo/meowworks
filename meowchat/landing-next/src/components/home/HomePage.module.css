@@ -719,10 +719,19 @@
 }
 
 .listColumns h4,
-.replyLabel,
-.panelCardTitle {
+.replyLabel {
   margin: 0 0 0.7rem;
   color: var(--navy);
+}
+
+.panelCardTitle {
+  margin: 0 0 0.7rem;
+  color: #dbe7f6;
+  font-weight: 700;
+}
+
+.panelCardAccent .panelCardTitle {
+  color: #f8e7de;
 }
 
 .listColumns ul,
