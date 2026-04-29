@@ -1,0 +1,1026 @@
+.page {
+  --navy: #0f172a;
+  --navy-2: #1e293b;
+  --slate: #334155;
+  --slate-soft: #64748b;
+  --mist: #e2e8f0;
+  --cloud: #f8fafc;
+  --warm: #fffdf9;
+  --green: #16a34a;
+  --green-deep: #15803d;
+  --green-soft: #dcfce7;
+  --coral: #f9735b;
+  --apricot: #fdba74;
+  color: var(--slate);
+  background: var(--warm);
+  font-family: 'Sarabun', sans-serif;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 253, 249, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.navInner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand,
+.footerBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logoMark {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+}
+
+.logoMark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navLinks,
+.navActions,
+.heroActions,
+.trustChips,
+.dashboardTabs,
+.ctaActions,
+.footerMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navLinks a,
+.loginLink,
+.footerMeta a {
+  color: var(--slate);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navLinks a:hover,
+.loginLink:hover,
+.footerMeta a:hover {
+  color: var(--green-deep);
+}
+
+.primaryButton,
+.primaryButtonSmall,
+.primaryButtonBlock,
+.secondaryButton,
+.secondaryButtonBlock {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 50px;
+  padding: 0 1.4rem;
+}
+
+.primaryButtonSmall {
+  min-height: 42px;
+  padding: 0 1.1rem;
+}
+
+.primaryButton,
+.primaryButtonSmall,
+.primaryButtonBlock {
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--green-deep));
+  box-shadow: 0 16px 36px rgba(22, 163, 74, 0.22);
+}
+
+.secondaryButton,
+.secondaryButtonBlock {
+  color: var(--navy);
+  border: 1px solid var(--mist);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.primaryButtonBlock,
+.secondaryButtonBlock {
+  width: 100%;
+  min-height: 48px;
+}
+
+.primaryButton:hover,
+.primaryButtonSmall:hover,
+.primaryButtonBlock:hover,
+.secondaryButton:hover,
+.secondaryButtonBlock:hover,
+.tabButton:hover,
+.activeTab:hover,
+.dashboardTab:hover,
+.dashboardTabActive:hover {
+  transform: translateY(-1px);
+}
+
+.heroSection,
+.lightSection,
+.mutedSection,
+.darkSection,
+.faqSection,
+.ctaSection {
+  position: relative;
+}
+
+.heroSection {
+  overflow: hidden;
+  padding: 5.5rem 0 4rem;
+}
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 80% 22%, rgba(22, 163, 74, 0.18), transparent 24%),
+    radial-gradient(circle at 20% 12%, rgba(249, 115, 91, 0.14), transparent 18%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.85), rgba(255, 253, 249, 0));
+}
+
+.heroGrid,
+.twoColumnFeature,
+.useCasePanel,
+.dashboardDetailRow,
+.footerInner {
+  display: grid;
+  gap: 2rem;
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 420px);
+  align-items: center;
+}
+
+.heroBadge,
+.eyebrow,
+.eyebrowInvert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.heroBadge,
+.eyebrow {
+  color: var(--green-deep);
+}
+
+.eyebrowInvert {
+  color: var(--apricot);
+}
+
+.heroTitle {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+
+.heroTitle span,
+.sectionTitle span,
+.sectionTitleInvert span,
+.ctaTitle span {
+  color: var(--green);
+}
+
+.heroDescription,
+.sectionDescription,
+.useCaseAudience,
+.replyText,
+.planDescription,
+.stepCard p,
+.faqCard p,
+.ctaDescription,
+.footer p,
+.footerMeta {
+  color: var(--slate-soft);
+}
+
+.heroDescription {
+  max-width: 620px;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  margin: 1.4rem 0 0;
+}
+
+.trustChips {
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.trustChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(22, 163, 74, 0.12);
+  background: rgba(220, 252, 231, 0.55);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.chatWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.phoneCard {
+  width: min(100%, 380px);
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+}
+
+.phoneTopBar {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1rem 0.9rem;
+  background: linear-gradient(135deg, var(--green), #22c55e);
+}
+
+.avatar,
+.proofAvatar,
+.testimonialAvatar,
+.problemIcon,
+.solutionIcon,
+.sideBadgeIcon,
+.stepNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1.25rem;
+}
+
+.phoneTitle {
+  color: #fff;
+  font-weight: 800;
+}
+
+.phoneSubtitle {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.84rem;
+}
+
+.chatBody {
+  background: #f2f4f7;
+  min-height: 350px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.userMessage,
+.botMessage {
+  display: flex;
+  flex-direction: column;
+  max-width: 84%;
+  animation: fadeUp 0.35s ease;
+}
+
+.userMessage {
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.botMessage {
+  align-items: flex-start;
+}
+
+.chatBubble,
+.orderBubble {
+  border-radius: 18px;
+  padding: 0.85rem 1rem;
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.chatBubble {
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.userMessage .chatBubble {
+  background: var(--green);
+  color: #fff;
+}
+
+.orderBubble {
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+.orderTitle {
+  font-weight: 800;
+  color: var(--green-deep);
+  margin-bottom: 0.65rem;
+}
+
+.orderRow,
+.orderRowMuted {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.orderRowMuted {
+  margin-top: 0.35rem;
+  color: var(--slate-soft);
+  font-size: 0.84rem;
+}
+
+.orderButton {
+  margin-top: 0.8rem;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 12px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messageMeta {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.sideBadge {
+  width: min(100%, 320px);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+}
+
+.sideBadgeIcon,
+.problemIcon,
+.solutionIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 1.15rem;
+}
+
+.sideBadgeIcon,
+.problemIcon {
+  background: rgba(249, 115, 91, 0.12);
+}
+
+.solutionIcon {
+  background: rgba(22, 163, 74, 0.12);
+}
+
+.sideBadge strong {
+  display: block;
+  color: var(--navy);
+  margin-bottom: 0.2rem;
+}
+
+.sideBadge span {
+  color: var(--slate-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.proofBar {
+  overflow: hidden;
+  border-top: 1px solid var(--mist);
+  border-bottom: 1px solid var(--mist);
+  background: var(--cloud);
+  padding: 1rem 0;
+}
+
+.proofTrack {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+}
+
+.proofItem {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  white-space: nowrap;
+}
+
+.proofAvatar,
+.testimonialAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--mist);
+}
+
+.proofStars,
+.testimonialStars {
+  color: var(--coral);
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+}
+
+.proofName {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.proofQuote {
+  color: var(--slate-soft);
+}
+
+.lightSection,
+.mutedSection,
+.darkSection,
+.faqSection,
+.ctaSection {
+  padding: 5.5rem 0;
+}
+
+.mutedSection,
+.faqSection {
+  background: var(--cloud);
+}
+
+.darkSection {
+  background: linear-gradient(180deg, var(--navy), #162033);
+}
+
+.sectionHeading {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle,
+.sectionTitleInvert,
+.ctaTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.sectionTitle {
+  color: var(--navy);
+}
+
+.sectionTitleInvert,
+.ctaTitle {
+  color: #fff;
+}
+
+.sectionDescription,
+.sectionDescriptionInvert {
+  margin-top: 0.9rem;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.sectionDescriptionInvert {
+  color: #cbd5e1;
+}
+
+.twoColumnFeature,
+.useCasePanel,
+.dashboardDetailRow,
+.footerInner {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cardStack,
+.faqList {
+  display: grid;
+  gap: 1rem;
+}
+
+.problemCard,
+.solutionCard,
+.replyCard,
+.metricCard,
+.panelCard,
+.panelCardAccent,
+.testimonialCard,
+.pricingCard,
+.pricingCardHighlight,
+.stepCard,
+.faqCard,
+.ctaCard {
+  border-radius: 24px;
+}
+
+.problemCard,
+.solutionCard,
+.replyCard,
+.testimonialCard,
+.pricingCard,
+.pricingCardHighlight,
+.stepCard,
+.faqCard {
+  padding: 1.4rem;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.problemCard,
+.solutionCard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.problemCard h3,
+.solutionCard h3,
+.useCaseCopy h3,
+.pricingCard h3,
+.pricingCardHighlight h3,
+.stepCard h3,
+.faqCard h3 {
+  margin: 0 0 0.45rem;
+  color: var(--navy);
+}
+
+.problemCard p,
+.solutionCard p,
+.useCaseCopy ul,
+.panelCard p,
+.panelCardAccent p,
+.testimonialQuote,
+.pricingCard p,
+.pricingCardHighlight p,
+.stepCard p,
+.faqCard p,
+.footer p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+.tabRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tabButton,
+.activeTab,
+.dashboardTab,
+.dashboardTabActive {
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--mist);
+  font: inherit;
+  cursor: pointer;
+}
+
+.tabButton,
+.dashboardTab {
+  background: #fff;
+  color: var(--slate);
+}
+
+.activeTab,
+.dashboardTabActive {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+.useCasePanel {
+  align-items: start;
+}
+
+.useCaseCopy,
+.replyCard {
+  height: 100%;
+}
+
+.useCaseAudience,
+.replyLabel {
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.listColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.listColumns h4,
+.replyLabel,
+.panelCardTitle {
+  margin: 0 0 0.7rem;
+  color: var(--navy);
+}
+
+.listColumns ul,
+.planFeatureList,
+.bulletListDark {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.listColumns li,
+.planFeatureList li,
+.bulletListDark li {
+  margin-bottom: 0.55rem;
+  color: var(--slate-soft);
+  line-height: 1.6;
+}
+
+.replyCard {
+  background: linear-gradient(180deg, rgba(22, 163, 74, 0.08), rgba(249, 115, 91, 0.08));
+}
+
+.showcaseHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.dashboardCard {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metricCard,
+.panelCard,
+.panelCardAccent {
+  padding: 1.25rem;
+}
+
+.metricCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metricCard span,
+.metricCard p,
+.panelCard,
+.panelCardAccent {
+  color: #cbd5e1;
+}
+
+.metricCard strong {
+  display: block;
+  margin: 0.6rem 0 0.4rem;
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.dashboardDetailRow {
+  margin-top: 1rem;
+}
+
+.panelCard,
+.panelCardAccent {
+  background: rgba(15, 23, 42, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panelCardAccent {
+  background: linear-gradient(180deg, rgba(249, 115, 91, 0.15), rgba(253, 186, 116, 0.08));
+}
+
+.bulletListDark li {
+  color: #dbe4ef;
+}
+
+.testimonialGrid,
+.pricingGrid,
+.stepGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.testimonialGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.testimonialQuote {
+  margin: 1rem 0 1.2rem;
+  color: var(--slate-soft);
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.testimonialAuthor strong,
+.footerBrand strong {
+  color: var(--navy);
+  display: block;
+}
+
+.testimonialAuthor span {
+  color: var(--slate-soft);
+  font-size: 0.92rem;
+}
+
+.pricingGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pricingCard,
+.pricingCardHighlight {
+  position: relative;
+}
+
+.pricingCardHighlight {
+  background: linear-gradient(180deg, rgba(22, 163, 74, 0.09), rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  box-shadow: 0 24px 50px rgba(22, 163, 74, 0.12);
+}
+
+.planBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  min-height: 30px;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--green-deep);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.planPrice {
+  color: var(--navy);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.planDescription {
+  margin: 0.8rem 0 1rem;
+  min-height: 72px;
+}
+
+.planFeatureList {
+  min-height: 150px;
+}
+
+.stepGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stepCard {
+  background: linear-gradient(180deg, #fff, rgba(248, 250, 252, 0.94));
+}
+
+.stepNumber {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--green-deep);
+  font-weight: 800;
+}
+
+.faqList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ctaCard {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+}
+
+.ctaDescription {
+  margin: 0.85rem 0 0;
+  color: #cbd5e1;
+}
+
+.footer {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--mist);
+}
+
+.footerInner {
+  align-items: start;
+}
+
+.footerMeta {
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .twoColumnFeature,
+  .useCasePanel,
+  .dashboardDetailRow,
+  .pricingGrid,
+  .stepGrid,
+  .faqList,
+  .footerInner {
+    grid-template-columns: 1fr;
+  }
+
+  .metricGrid,
+  .testimonialGrid,
+  .listColumns,
+  .ctaCard {
+    grid-template-columns: 1fr;
+  }
+
+  .showcaseHeaderRow {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .chatWrap {
+    align-items: stretch;
+  }
+
+  .sideBadge,
+  .phoneCard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 820px) {
+  .navInner {
+    flex-wrap: wrap;
+    padding: 0.8rem 0;
+  }
+
+  .navLinks {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.3rem;
+  }
+
+  .heroSection,
+  .lightSection,
+  .mutedSection,
+  .darkSection,
+  .faqSection,
+  .ctaSection {
+    padding: 4.25rem 0;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.25rem, 10vw, 3.4rem);
+  }
+
+  .footerMeta {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 1.25rem, 1120px);
+  }
+
+  .navActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .heroActions,
+  .ctaActions,
+  .dashboardTabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .tabRow {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.2rem;
+  }
+
+  .tabRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .proofTrack {
+    gap: 1.5rem;
+  }
+
+  .planDescription,
+  .planFeatureList {
+    min-height: 0;
+  }
+}
