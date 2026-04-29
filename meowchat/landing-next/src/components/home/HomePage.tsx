@@ -255,79 +255,67 @@ export default function HomePage() {
         <div className={styles.container}>
           <div className={styles.demoLead}>
             <SectionHeading
-              eyebrow="REAL DEMO VIDEO"
-              title="ดูวิดีโอตัวอย่างว่า MeowChat ช่วยร้านตอบอะไรได้บ้างบน LINE OA"
-              description="วิดีโอนี้สรุป flow หลักที่ร้านใช้ได้จริง เช่น ตอบราคา รับจองคิว เก็บข้อมูล และส่งต่อทีมเมื่อถึงจังหวะปิดการขายค่ะ"
+              eyebrow="USE CASE SNAPSHOT"
+              title="ดูตัวอย่างงานที่ MeowChat ช่วยร้านได้จริงบน LINE OA แบบอ่านแล้วเข้าใจทันที"
+              description="แค่ไล่ดูตัวอย่าง 4 สถานการณ์นี้ พี่จะเห็นทันทีว่า MeowChat ช่วยตอบอะไร เก็บข้อมูลอะไร และส่งต่อทีมตอนไหนได้บ้างค่ะ"
             />
           </div>
 
-          <div className={styles.demoGrid}>
-            <div className={styles.demoNarrative}>
-              <div className={styles.demoHighlights}>
-                <div className={styles.demoHighlightChip}>
-                  <span aria-hidden="true">▶</span>
-                  <span>วิดีโอจริง กดเล่นได้</span>
-                </div>
-                <div className={styles.demoHighlightChip}>
-                  <span aria-hidden="true">✦</span>
-                  <span>สรุป use case หลักใน 12 วินาที</span>
-                </div>
-                <div className={styles.demoHighlightChip}>
-                  <span aria-hidden="true">✓</span>
-                  <span>เหมาะกับร้านที่อยากเห็นภาพก่อนคุยกับทีม</span>
-                </div>
-              </div>
-
-              <div className={styles.demoCaseList}>
-                {demoUseCases.map((item) => (
-                  <article key={item.id} className={styles.demoNarrativeCard}>
-                    <span className={styles.demoCaseEyebrow}>{item.eyebrow}</span>
-                    <h3>{item.label}</h3>
-                    <p>{item.handoffDetail}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div className={styles.demoOutcomeList}>
-                <div className={styles.demoOutcomeItem}>
-                  <span aria-hidden="true">✓</span>
-                  <span>ช่วยให้คนเห็นทันทีว่า MeowChat ไม่ได้เป็นแค่ chatbot แต่เป็น flow ช่วยขายบน LINE OA</span>
-                </div>
-                <div className={styles.demoOutcomeItem}>
-                  <span aria-hidden="true">✓</span>
-                  <span>เริ่มจาก use case เดียวที่ร้านใช้จริงก่อน แล้วค่อยขยายเมื่อทีมพร้อม</span>
-                </div>
-              </div>
+          <div className={styles.demoHighlights}>
+            <div className={styles.demoHighlightChip}>
+              <span aria-hidden="true">✓</span>
+              <span>อ่านจบในไม่กี่วินาที</span>
             </div>
+            <div className={styles.demoHighlightChip}>
+              <span aria-hidden="true">💬</span>
+              <span>เห็นบทสนทนาตัวอย่างจริงทันที</span>
+            </div>
+            <div className={styles.demoHighlightChip}>
+              <span aria-hidden="true">🤝</span>
+              <span>รู้เลยว่าร้านได้อะไรต่อจากแต่ละเคส</span>
+            </div>
+          </div>
 
-            <div className={styles.demoPlayerCard}>
-              <div className={styles.demoPlayerTop}>
-                <span className={styles.demoPlayerLabel}>MeowChat Product Explainer</span>
-                <span className={styles.demoPlayerLength}>12 sec</span>
-              </div>
-
-              <div className={styles.demoVideoFrame}>
-                <video
-                  className={styles.demoVideo}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster="/media/meowchat-demo-poster.png"
-                  aria-label="วิดีโอตัวอย่างการทำงานของ MeowChat บน LINE OA"
-                >
-                  <source src="/media/meowchat-demo.mp4" type="video/mp4" />
-                  เบราว์เซอร์นี้ไม่รองรับวิดีโอ สามารถเปิดไฟล์โดยตรงได้ที่ /media/meowchat-demo.mp4
-                </video>
-              </div>
-
-              <div className={styles.demoSupportBox}>
-                <strong>ถ้าร้านของพี่มี flow เฉพาะทาง แอนนาทำวิดีโอเวอร์ชันธุรกิจจริงต่อให้ได้อีก</strong>
-                <p>ตอนนี้ใส่วิดีโอตัวอย่างหลักเพื่อให้คนเห็นภาพก่อน จากนั้นค่อยแตกเวอร์ชันตามร้านอาหาร คลินิก หรือร้านค้าออนไลน์ได้ค่ะ</p>
-                <div className={styles.demoSupportActions}>
-                  <a href={PRIMARY_CTA_HREF} className={styles.primaryButtonSmall}>{PRIMARY_CTA_LABEL}</a>
-                  <a href="#pricing" className={styles.demoTextLink}>ดูแพ็กที่เหมาะกับร้าน</a>
+          <div className={styles.demoGrid}>
+            {demoUseCases.map((item) => (
+              <article key={item.id} className={styles.demoStaticCard}>
+                <div className={styles.demoCardHead}>
+                  <span className={styles.demoCaseEyebrow}>{item.eyebrow}</span>
+                  <h3>{item.label}</h3>
+                  <p>{item.title}</p>
                 </div>
-              </div>
+
+                <div className={styles.demoSnippetStack}>
+                  <div className={styles.demoSnippetUser}>
+                    <span className={styles.demoMessageTag}>ลูกค้าทักมา</span>
+                    <p>{item.customerMessage}</p>
+                  </div>
+                  <div className={styles.demoSnippetBot}>
+                    <span className={styles.demoMessageTag}>MeowChat ตอบ</span>
+                    <p>{item.assistantMessage}</p>
+                  </div>
+                </div>
+
+                <div className={styles.demoOutcomeBox}>
+                  <strong>{item.handoffTitle}</strong>
+                  <p>{item.handoffDetail}</p>
+                </div>
+
+                <div className={styles.demoChipRow}>
+                  {item.chips.map((chip) => (
+                    <span key={chip} className={styles.demoMiniChip}>{chip}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className={styles.demoSupportBox}>
+            <strong>ถ้าร้านของพี่มี flow เฉพาะทาง เราค่อยแตก use case เพิ่มตามประเภทธุรกิจได้อีกค่ะ</strong>
+            <p>ตอนนี้แอนนาเก็บ section นี้ให้ทำหน้าที่เป็นภาพรวมที่อ่านง่ายก่อน เพื่อให้คนเข้าใจ product เร็วกว่าเดิมและเห็นงานที่ระบบช่วยได้ทันที</p>
+            <div className={styles.demoSupportActions}>
+              <a href={PRIMARY_CTA_HREF} className={styles.primaryButtonSmall}>{PRIMARY_CTA_LABEL}</a>
+              <a href="#pricing" className={styles.demoTextLink}>ดูแพ็กที่เหมาะกับร้าน</a>
             </div>
           </div>
         </div>
