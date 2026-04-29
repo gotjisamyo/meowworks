@@ -4,7 +4,9 @@ import styles from './HomePage.module.css';
 import {
   dashboardViews,
   faqs,
+  heroProofPoints,
   pricingPlans,
+  pricingTrustNotes,
   problems,
   proofItems,
   setupSteps,
@@ -173,16 +175,28 @@ export default function HomePage() {
             <div>
               <p className={styles.heroBadge}>ผู้ช่วยขายบน LINE OA สำหรับธุรกิจไทย</p>
               <h1 className={styles.heroTitle}>
-                เปลี่ยน LINE OA
+                ช่วยร้านที่ขายผ่าน LINE OA
                 <br />
-                ให้ <span>ตอบเร็ว</span> ขายง่าย
+                ให้ <span>ตอบไวขึ้น</span> และปิดการขายง่ายขึ้น
                 <br />
-                และไม่ปล่อยลูกค้าหลุดมือ
+                โดยไม่ต้องเพิ่มภาระทีม
               </h1>
               <p className={styles.heroDescription}>
                 {BRAND_TAGLINE} ที่ช่วยตอบคำถามซ้ำ ๆ รับออเดอร์ จองคิว เก็บ lead
-                และส่งต่อทีมเมื่อถึงจังหวะที่ควรปิดการขายต่อค่ะ
+                และส่งต่อแอดมินเมื่อถึงจังหวะที่ควรใช้คนจริงปิดการขายต่อค่ะ
               </p>
+              <p className={styles.heroSubproof}>
+                เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก และอยากเริ่มจาก flow ที่ช่วยหน้างานได้จริงก่อน
+              </p>
+
+              <div className={styles.heroProofGrid}>
+                {heroProofPoints.map((item) => (
+                  <article key={item.value} className={styles.heroProofCard}>
+                    <strong>{item.value}</strong>
+                    <span>{item.label}</span>
+                  </article>
+                ))}
+              </div>
 
               <div className={styles.heroActions}>
                 <a href={PRIMARY_CTA_HREF} className={styles.primaryButton}>{PRIMARY_CTA_LABEL}</a>
@@ -363,9 +377,9 @@ export default function HomePage() {
                 </ul>
               </div>
               <div className={styles.panelCardAccent}>
-                <div className={styles.panelCardTitle}>จุดยืนของแบรนด์</div>
+                <div className={styles.panelCardTitle}>เหตุผลที่ร้านเริ่มได้ง่าย</div>
                 <p>
-                  ดูเป็นซอฟต์แวร์ที่พร้อมใช้งานจริง แต่ยังอบอุ่น เข้าถึงง่าย และพูดกับธุรกิจไทยแบบเข้าใจงานหน้างานค่ะ
+                  เริ่มจากคำถามที่ลูกค้าถามบ่อยหรือ flow เดียวก่อน แล้วค่อยขยายเมื่อร้านพร้อม โดยไม่ต้องรื้อวิธีทำงานทั้งระบบตั้งแต่วันแรกค่ะ
                 </p>
               </div>
             </div>
@@ -377,8 +391,8 @@ export default function HomePage() {
         <div className={styles.container}>
           <SectionHeading
             eyebrow="TRUST & RESULTS"
-            title="ความรู้สึกที่เว็บไซต์ควรส่งออก: น่าเชื่อถือ อบอุ่น และพร้อมช่วยขายจริง"
-            description="เราเลี่ยงความเป็น AI generic หรือบอทน่ารักเกินไป แล้วขยับให้ดูเป็นเครื่องมือธุรกิจที่ใช้งานได้จริงบน LINE OA"
+            title="หลักฐานที่ช่วยให้เจ้าของร้านตัดสินใจได้ง่ายขึ้น"
+            description="หน้า landing ควรพิสูจน์ว่าระบบนี้ช่วยลดแชทตก ลดงานตอบซ้ำ และทำให้ทีมโฟกัสเคสพร้อมซื้อได้มากขึ้น ไม่ใช่แค่พูดว่าเป็น AI อย่างเดียว"
           />
 
           <div className={styles.testimonialGrid}>
@@ -386,6 +400,7 @@ export default function HomePage() {
               <article key={item.name} className={styles.testimonialCard}>
                 <div className={styles.testimonialStars}>★★★★★</div>
                 <p className={styles.testimonialQuote}>{item.quote}</p>
+                <p className={styles.testimonialResult}>{item.result}</p>
                 <div className={styles.testimonialAuthor}>
                   <span className={styles.testimonialAvatar}>{item.icon}</span>
                   <div>
@@ -403,8 +418,8 @@ export default function HomePage() {
         <div className={styles.container}>
           <SectionHeading
             eyebrow="PRICING"
-            title="เริ่มจาก use case ที่จำเป็นก่อน แล้วค่อยขยายเมื่อร้านพร้อม"
-            description="ขายแบบชัดเจน เข้าใจง่าย และโฟกัสผลลัพธ์ที่เจ้าของร้านรู้สึกได้ มากกว่ากองฟีเจอร์ที่อ่านแล้วยังไม่เห็นภาพ"
+            title="เลือกแพ็กตามจังหวะของร้าน ไม่ต้องซื้อเกินสิ่งที่ใช้จริง"
+            description="ช่วยให้เจ้าของร้านตัดสินใจง่ายขึ้นว่าเริ่มจากอะไรดี และเมื่อไรควรขยาย flow เพื่อให้ทีมตอบไวขึ้นและปิดการขายได้ลื่นขึ้น"
           />
 
           <div className={styles.pricingGrid}>
@@ -414,15 +429,27 @@ export default function HomePage() {
                 <h3>{plan.name}</h3>
                 <div className={styles.planPrice}>{plan.price}</div>
                 <p className={styles.planDescription}>{plan.description}</p>
+                <p className={styles.planAudience}>{plan.audience}</p>
+                <div className={styles.planOutcome}>{plan.outcome}</div>
                 <ul className={styles.planFeatureList}>
                   {plan.features.map((feature) => (
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
-                <a href={PRIMARY_CTA_HREF} className={plan.highlight ? styles.primaryButtonBlock : styles.secondaryButtonBlock}>
-                  {plan.highlight ? PRIMARY_CTA_LABEL : 'ขอดูเดโม่'}
+                <a href={plan.highlight ? PRIMARY_CTA_HREF : SECONDARY_CTA_HREF} className={plan.highlight ? styles.primaryButtonBlock : styles.secondaryButtonBlock}>
+                  {plan.ctaLabel}
                 </a>
+                <p className={styles.planNote}>{plan.ctaNote}</p>
               </article>
+            ))}
+          </div>
+
+          <div className={styles.pricingTrustBar}>
+            {pricingTrustNotes.map((item) => (
+              <div key={item} className={styles.pricingTrustItem}>
+                <span>✓</span>
+                <span>{item}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -472,14 +499,22 @@ export default function HomePage() {
           <div className={styles.ctaCard}>
             <div>
               <p className={styles.eyebrow}>READY TO START</p>
-              <h2 className={styles.ctaTitle}>อยากให้ LINE OA ของร้านคุณตอบไวขึ้นและขายลื่นขึ้นไหมคะ</h2>
+              <h2 className={styles.ctaTitle}>เริ่มจัดการ LINE OA ของร้านคุณให้ตอบไวขึ้น และไม่ปล่อยลูกค้าพร้อมซื้อหลุดมือ</h2>
               <p className={styles.ctaDescription}>
-                เริ่มจาก flow เล็ก ๆ ที่ช่วยร้านคุณได้จริงก่อน แล้วค่อยขยายเมื่อพร้อมค่ะ
+                เริ่มจาก use case เดียวก่อนก็ได้ค่ะ เช่น คำถามซ้ำ การรับออเดอร์ หรือการจองคิว แล้วค่อยขยายเมื่อร้านพร้อม
               </p>
+              <div className={styles.ctaSupportList}>
+                <div className={styles.ctaSupportItem}>✓ ไม่ต้องมีทีมเทคนิคก็เริ่มได้</div>
+                <div className={styles.ctaSupportItem}>✓ คุยกับทีมเพื่อช่วยเลือกแพ็กที่เหมาะกับร้านได้</div>
+                <div className={styles.ctaSupportItem}>✓ เหมาะกับร้านที่ใช้ LINE OA เป็นช่องทางหลัก</div>
+              </div>
             </div>
-            <div className={styles.ctaActions}>
-              <a href={PRIMARY_CTA_HREF} className={styles.primaryButton}>{PRIMARY_CTA_LABEL}</a>
-              <a href={SECONDARY_CTA_HREF} className={styles.secondaryButton}>{SECONDARY_CTA_LABEL}</a>
+            <div className={styles.ctaActionsWrap}>
+              <div className={styles.ctaActions}>
+                <a href={PRIMARY_CTA_HREF} className={styles.primaryButton}>{PRIMARY_CTA_LABEL}</a>
+                <a href={SECONDARY_CTA_HREF} className={styles.secondaryButton}>{SECONDARY_CTA_LABEL}</a>
+              </div>
+              <p className={styles.ctaMicrocopy}>ถ้ายังไม่แน่ใจว่าเริ่มจากแพ็กไหน ทักมาคุยก่อนแล้วค่อยตัดสินใจได้ค่ะ</p>
             </div>
           </div>
         </div>

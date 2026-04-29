@@ -247,6 +247,46 @@
   margin: 1.4rem 0 0;
 }
 
+.heroSubproof {
+  max-width: 620px;
+  margin: 0.85rem 0 0;
+  color: var(--navy);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.heroProofGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.35rem;
+  max-width: 700px;
+}
+
+.heroProofCard {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+}
+
+.heroProofCard strong {
+  display: block;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.heroProofCard span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--slate-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
 .trustChips {
   flex-wrap: wrap;
   margin-top: 1.75rem;
@@ -784,6 +824,13 @@
   color: var(--slate-soft);
 }
 
+.testimonialResult {
+  margin: -0.25rem 0 1rem;
+  color: var(--green-deep);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
 .testimonialAuthor {
   display: flex;
   align-items: center;
@@ -839,11 +886,60 @@
 
 .planDescription {
   margin: 0.8rem 0 1rem;
-  min-height: 72px;
+  min-height: 0;
+}
+
+.planAudience {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.planOutcome {
+  margin-top: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid var(--mist);
+  color: var(--slate);
+  font-weight: 600;
+  line-height: 1.6;
 }
 
 .planFeatureList {
-  min-height: 150px;
+  min-height: 170px;
+}
+
+.planNote {
+  margin: 0.9rem 0 0;
+  color: var(--slate-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.pricingTrustBar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.15rem;
+}
+
+.pricingTrustItem {
+  display: flex;
+  align-items: start;
+  gap: 0.55rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--mist);
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+.pricingTrustItem span:first-child {
+  color: var(--green-deep);
+  font-weight: 800;
 }
 
 .stepGrid {
@@ -880,6 +976,30 @@
 .ctaDescription {
   margin: 0.85rem 0 0;
   color: #cbd5e1;
+}
+
+.ctaSupportList {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+
+.ctaSupportItem {
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+.ctaActionsWrap {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.ctaMicrocopy {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: right;
 }
 
 .footer {
@@ -931,6 +1051,8 @@
   .metricGrid,
   .testimonialGrid,
   .listColumns,
+  .heroProofGrid,
+  .pricingTrustBar,
   .ctaCard {
     grid-template-columns: 1fr;
   }
@@ -1022,5 +1144,9 @@
   .planDescription,
   .planFeatureList {
     min-height: 0;
+  }
+
+  .ctaMicrocopy {
+    text-align: left;
   }
 }
