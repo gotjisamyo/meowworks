@@ -96,7 +96,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const dbArticles = await fetchPublishedArticles();
   const dbSlugs = dbArticles.map(a => a.slug);
   const staticSlugs = getAllSlugs();
-  const allSlugs = [...new Set([...dbSlugs, ...staticSlugs])];
+  const allSlugs = Array.from(new Set([...dbSlugs, ...staticSlugs]));
   return {
     paths: allSlugs.map(slug => ({ params: { slug } })),
     fallback: 'blocking', // new DB articles appear without rebuild
